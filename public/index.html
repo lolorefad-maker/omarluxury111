@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fixed viewport to prevent zooming or shrinking on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>OMAR LUXURY | Timeless Luxury & Handcrafted Elegance</title>
   <meta name="description" content="Discover handcrafted luxury leather bags and accessories. Timeless elegance, premium Italian leather, and world-class craftsmanship.">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23141414'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top Announcement Bar (As in Reference Photo) -->
+  <!-- Top Announcement Bar -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div id="announcement-text">
-        توصيل سريع لجميع المحافظات / الدفع عند الاستلام / إرجاع مجاني
+        توصيل سريع لكافة المحافظات • الدفع عند الاستلام • إرجاع مجاني 30 يوماً
       </div>
       <div class="top-bar-links">
         <select class="currency-select" onchange="changeCurrency(this.value)">
@@ -36,22 +40,41 @@
   </div>
 
   <!-- Main Luxury Header -->
-  <header class="main-header">
+  <header class="main-header" id="main-header">
     <div class="container header-inner">
-      <!-- Brand Logo -->
-      <a href="/" class="logo-wrap">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 6h-3V5a4 4 0 0 0-8 0v1H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-9-1a2 2 0 0 1 4 0v1h-4V5zm9 15H5V8h14v12z"/>
-          <path d="M12 11c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+      <!-- Mobile Hamburger Menu Button -->
+      <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Open Navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
+      </button>
+
+      <!-- Brand Logo: Ultra-Luxury Ornate Emblem & Typography -->
+      <a href="/" class="logo-wrap">
+        <div class="brand-crest">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="28" height="28" rx="7" stroke="url(#goldGrad)" stroke-width="1.6"/>
+            <path d="M16 6L23 13L16 26L9 13L16 6Z" stroke="url(#goldGrad)" stroke-width="1.3"/>
+            <circle cx="16" cy="15" r="2.8" fill="url(#goldGrad)"/>
+            <defs>
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F2D179"/>
+                <stop offset="0.5" stop-color="#C59B3F"/>
+                <stop offset="1" stop-color="#8F6B17"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         <div class="logo-text">
-          <span class="brand-title font-serif" id="store-name">OMAR LUXURY</span>
-          <span class="brand-tagline">TIMELESS ELEGANCE</span>
+          <span class="brand-title font-cinzel" id="store-name">OMAR LUXURY</span>
+          <span class="brand-tagline">HAUTE MAROQUINERIE • AMMAN</span>
         </div>
       </a>
 
-      <!-- Navigation Menu (Matching Photo) -->
-      <nav>
+      <!-- Navigation Menu -->
+      <nav class="desktop-nav">
         <ul class="nav-menu">
           <li><a href="#" class="nav-link active">Home</a></li>
           <li><a href="#shop" class="nav-link">Shop</a></li>
@@ -64,10 +87,10 @@
         </ul>
       </nav>
 
-      <!-- Action Icons -->
+      <!-- Header Action Icons -->
       <div class="header-actions">
-        <!-- Live Search Bar -->
-        <div style="position: relative; display: flex; align-items: center;">
+        <!-- Live Search Bar (Desktop) -->
+        <div class="desktop-search" style="position: relative; display: flex; align-items: center;">
           <input 
             type="text" 
             id="live-search-input" 
@@ -82,8 +105,17 @@
           </svg>
         </div>
 
-        <button class="icon-btn" onclick="openCartDrawer()" title="Shopping Bag">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <!-- Mobile Search Trigger -->
+        <button class="icon-btn mobile-search-btn" onclick="toggleMobileSearch()" title="Search">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="icon-btn cart-header-btn" onclick="openCartDrawer()" title="Shopping Bag">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -92,7 +124,46 @@
         </button>
       </div>
     </div>
+
+    <!-- Mobile Expandable Search Bar -->
+    <div class="mobile-search-bar" id="mobile-search-bar">
+      <input type="text" id="mobile-search-input" placeholder="ابحث عن حقيبتك المفضلة..." oninput="handleMobileSearch(event)">
+      <button class="close-search-btn" onclick="toggleMobileSearch()">✕</button>
+    </div>
   </header>
+
+  <!-- Slide-out Luxury Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+      <div class="logo-text">
+        <span class="brand-title font-cinzel" style="font-size:17px;">OMAR LUXURY</span>
+        <span class="brand-tagline">HAUTE MAROQUINERIE</span>
+      </div>
+      <button class="close-btn" onclick="toggleMobileNav()">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#" onclick="toggleMobileNav()">الرئيسية • Home</a></li>
+      <li><a href="#shop" onclick="toggleMobileNav(); filterCategory('all')">كل التشكيلة • All Collection</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('tote')">حقائب توت • Tote Bags</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('shoulder')">حقائب كتف • Shoulder Bags</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('crossbody')">كروس بودي • Crossbody Bags</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('clutch')">كلاتش ومناسبات • Clutches</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('accessories')">إكسسوارات جلدية • Accessories</a></li>
+      <li><a href="#reviews" onclick="toggleMobileNav()">آراء العملاء • Reviews</a></li>
+      <li><a href="/admin" style="color:var(--color-accent-gold-dark); font-weight:700;">لوحة التحكم الإدارية • Admin</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <div style="font-size:12px; font-weight:600; color:var(--color-text-muted); margin-bottom:8px;">اختر عملة المتجر:</div>
+      <select class="currency-select" style="width:100%; padding:10px; font-size:13px;" onchange="changeCurrency(this.value)">
+        <option value="JOD" selected>JOD (د.أ - دينار أردني)</option>
+        <option value="USD">USD ($ - دولار أمريكي)</option>
+        <option value="ILS">ILS (₪ - شيكل)</option>
+        <option value="AED">AED (درهم إماراتي)</option>
+        <option value="SAR">SAR (ريال سعودي)</option>
+      </select>
+    </div>
+  </div>
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileNav()"></div>
 
   <!-- Hero Section (Matching Reference Photo) -->
   <section class="hero-section" id="hero-banner-container">

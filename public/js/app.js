@@ -428,6 +428,41 @@ window.filterCategory = function (cat) {
   renderCatalog();
 };
 
+// Mobile Navigation Drawer Toggle
+window.toggleMobileNav = function () {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  if (!drawer) return;
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) {
+    drawer.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    drawer.classList.add('open');
+    if (backdrop) backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+// Mobile Search Toggle
+window.toggleMobileSearch = function () {
+  const bar = document.getElementById('mobile-search-bar');
+  if (!bar) return;
+  bar.classList.toggle('open');
+  if (bar.classList.contains('open')) {
+    const input = document.getElementById('mobile-search-input');
+    if (input) setTimeout(() => input.focus(), 150);
+  }
+};
+
+window.handleMobileSearch = function (e) {
+  const q = e.target.value;
+  const desktopInput = document.getElementById('live-search-input');
+  if (desktopInput) desktopInput.value = q;
+  handleSearch(e);
+};
+
 // Quick View Modal
 let currentQuickProd = null;
 let currentQuickColor = null;
@@ -446,45 +481,50 @@ window.openQuickView = function (prodId) {
     <button 
       class="quick-color-option ${idx === 0 ? 'selected' : ''}" 
       onclick="selectQuickColor(${idx})"
-      style="display:flex; align-items:center; gap:8px; padding:6px 14px; border:1px solid #ddd; border-radius:4px; font-size:12.5px;"
     >
-      <span style="width:14px; height:14px; border-radius:50%; background:${col.hex}; display:inline-block; border:1px solid #ccc;"></span>
-      <span>${col.name}</span>
+      <span class="color-dot" style="background:${col.hex};"></span>
+      <span class="color-label">${col.name}</span>
     </button>
   `).join('');
 
   body.innerHTML = `
-    <div style="display:grid; grid-template-columns: 1fr 1.1fr; gap:32px;">
-      <div>
-        <div style="background:var(--color-bg-soft); border-radius:6px; padding:20px; text-align:center; height:320px; display:flex; align-items:center; justify-content:center;">
-          <img id="quick-main-img" src="${currentQuickColor ? currentQuickColor.image : prod.image}" alt="${prod.title}" style="max-height:260px; max-width:100%; object-fit:contain;">
+    <div class="quick-view-grid">
+      <div class="quick-view-media-wrap">
+        <div class="quick-view-img-box">
+          <img id="quick-main-img" src="${currentQuickColor ? currentQuickColor.image : prod.image}" alt="${prod.title}">
         </div>
       </div>
-      <div>
-        <div style="font-size:11.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-accent-gold-dark); margin-bottom:4px;">${prod.category}</div>
-        <h2 class="font-serif" style="font-size:26px; margin-bottom:8px;">${prod.title}</h2>
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-          <span style="font-size:20px; font-weight:700;">${formatPrice(prod.price)}</span>
-          ${prod.original_price ? `<span style="font-size:15px; color:var(--color-text-light); text-decoration:line-through;">${formatPrice(prod.original_price)}</span>` : ''}
-          <span style="background:#e8f5e9; color:#2e7d32; font-size:11px; padding:2px 8px; border-radius:3px; font-weight:600;">In Stock (${prod.stock || 15})</span>
-        </div>
-        <p style="font-size:13.5px; color:var(--color-text-muted); line-height:1.6; margin-bottom:20px;">${prod.description || prod.subtitle}</p>
+      <div class="quick-view-info">
+        <div class="quick-cat-badge">${prod.category || 'Luxury Handbag'}</div>
+        <h2 class="quick-prod-title font-serif">${prod.title}</h2>
         
-        <div style="margin-bottom:20px;">
-          <div style="font-size:12px; font-weight:600; text-transform:uppercase; margin-bottom:8px;">Select Color: <span id="quick-color-name" style="font-weight:400; color:var(--color-text-muted);">${currentQuickColor ? currentQuickColor.name : 'Standard'}</span></div>
-          <div style="display:flex; flex-wrap:wrap; gap:8px;" id="quick-color-list">
+        <div class="quick-price-row">
+          <span class="quick-price-val">${formatPrice(prod.price)}</span>
+          ${prod.original_price ? `<span class="quick-price-orig">${formatPrice(prod.original_price)}</span>` : ''}
+          <span class="stock-pill">متوفر بالمخزون</span>
+        </div>
+
+        <p class="quick-desc">${prod.description || prod.subtitle || 'حقيبة يد فاخرة مصنوعة من أرقى أنواع الجلود الطبيعية ومصممة بأناقة كلاسيكية تدوم طويلاً.'}</p>
+        
+        <div class="quick-color-section">
+          <div class="quick-section-label">
+            <span>اللون المختار:</span> 
+            <strong id="quick-color-name">${currentQuickColor ? currentQuickColor.name : 'الأساسي'}</strong>
+          </div>
+          <div class="quick-swatches-row" id="quick-color-list">
             ${colorSwatches}
           </div>
         </div>
 
-        <div style="display:flex; gap:14px; align-items:center; margin-top:24px;">
-          <div class="qty-controls" style="padding:4px 8px;">
-            <button class="qty-btn" onclick="changeQuickQty(-1)">-</button>
-            <span class="qty-num" id="quick-qty" style="font-size:14px; min-width:24px; text-align:center;">1</span>
+        <div class="quick-action-bar">
+          <div class="qty-controls quick-qty-box">
+            <button class="qty-btn" onclick="changeQuickQty(-1)">−</button>
+            <span class="qty-num" id="quick-qty">1</span>
             <button class="qty-btn" onclick="changeQuickQty(1)">+</button>
           </div>
-          <button class="btn-luxury" style="flex-grow:1; padding:12px 24px;" onclick="addQuickToCart()">
-            Add To Shopping Bag
+          <button class="btn-luxury quick-add-btn" onclick="addQuickToCart()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>أضف إلى السلة</span>
           </button>
         </div>
       </div>
@@ -511,11 +551,9 @@ window.selectQuickColor = function (idx) {
 
   document.querySelectorAll('.quick-color-option').forEach((opt, i) => {
     if (i === idx) {
-      opt.style.borderColor = 'var(--color-dark)';
-      opt.style.backgroundColor = '#faf8f5';
+      opt.classList.add('selected');
     } else {
-      opt.style.borderColor = '#ddd';
-      opt.style.backgroundColor = '#fff';
+      opt.classList.remove('selected');
     }
   });
 };
@@ -530,6 +568,7 @@ window.addQuickToCart = function () {
 window.closeModal = function (modalId) {
   const m = document.getElementById(modalId);
   if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
 };
 
 // Escape visitor-supplied text (reviews) before inserting it into the page
