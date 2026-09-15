@@ -11,21 +11,24 @@ const State = {
   settings: {},
   activeCategory: 'all',
   cart: JSON.parse(localStorage.getItem('mucci_cart') || '[]'),
-  currency: localStorage.getItem('mucci_curr') || 'USD',
+  currency: localStorage.getItem('mucci_curr') || 'JOD',
   rates: {
-    USD: { symbol: '$', rate: 1 },
-    ILS: { symbol: '₪', rate: 3.7 },
-    EUR: { symbol: '€', rate: 0.92 },
-    AED: { symbol: 'AED ', rate: 3.67 },
-    SAR: { symbol: 'SAR ', rate: 3.75 }
+    JOD: { symbol: ' د.أ', rate: 1 },
+    USD: { symbol: '$', rate: 1.41 },
+    ILS: { symbol: '₪', rate: 5.2 },
+    AED: { symbol: 'AED ', rate: 5.18 },
+    SAR: { symbol: 'SAR ', rate: 5.29 }
   },
   appliedCoupon: null
 };
 
 // Formatting currency
 function formatPrice(amount) {
-  const c = State.rates[State.currency] || State.rates.USD;
+  const c = State.rates[State.currency] || State.rates.JOD;
   const converted = amount * c.rate;
+  if (State.currency === 'JOD') {
+    return `${converted.toFixed(0)} د.أ`;
+  }
   return `${c.symbol}${converted.toFixed(2)}`;
 }
 
@@ -666,7 +669,7 @@ function showOrderSuccess(order) {
 
   const waNum = (State.settings.whatsapp_number || '+972599000000').replace(/[^0-9+]/g, '');
   const waMsg = encodeURIComponent(
-    `Hello Mucci Luxury! I just placed order #${order.order_number} for ${formatPrice(order.total)}. My name is ${order.customer_name}. Please confirm my order.`
+    `Hello Omar Luxury! I just placed order #${order.order_number} for ${formatPrice(order.total)}. My name is ${order.customer_name}. Please confirm my order.`
   );
   const waUrl = `https://wa.me/${waNum}?text=${waMsg}`;
 

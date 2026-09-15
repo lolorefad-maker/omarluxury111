@@ -370,7 +370,7 @@ function renderOrdersTable() {
 
   tbody.innerHTML = orders.map(o => {
     const waClean = (o.customer_phone || '').replace(/[^0-9]/g, '');
-    const waText = encodeURIComponent(`مرحباً ${o.customer_name}، نتواصل معك من متجر Mucci Luxury بخصوص طلبك رقم #${o.order_number}`);
+    const waText = encodeURIComponent(`مرحباً ${o.customer_name}، نتواصل معك من متجر Omar Luxury بخصوص طلبك رقم #${o.order_number}`);
     const dateStr = new Date(o.created_at).toLocaleDateString('ar-EG', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
     return `
@@ -441,7 +441,7 @@ window.viewOrderInvoice = function (orderId) {
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #141414; padding-bottom:16px; margin-bottom:20px;">
         <div>
           <h2 class="font-serif" style="font-size:26px; font-weight:700;">فاتورة شحن وتأكيد طلب</h2>
-          <div style="color:#777; font-size:12.5px;">Mucci Bags & Luxury Leather Goods</div>
+          <div style="color:#777; font-size:12.5px;">Omar Luxury Bags & Leather Goods</div>
         </div>
         <div style="text-align:left;">
           <div style="font-size:18px; font-weight:700;">#${o.order_number}</div>
