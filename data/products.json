@@ -1,7 +1,7 @@
 [
   {
     "createdAt": "2026-09-15T05:36:58.229Z",
-    "updatedAt": "2026-09-15T05:36:58.229Z",
+    "updatedAt": "2026-09-15T08:49:15.285Z",
     "id": "prod-sh-01",
     "title": "Fendi Baguette — Multicolour FF Terry",
     "subtitle": "The '90s icon in multicolour FF terry with tan leather",
@@ -21,12 +21,13 @@
         "image": "/images/collection/shoulder-baguette-mosaic.jpg"
       }
     ],
-    "stock": 12,
+    "stock": 11,
     "rating": 5,
     "reviews_count": 0,
     "featured": true,
     "is_new_arrival": true,
-    "active": true
+    "active": true,
+    "updated_at": "2026-09-15T08:49:15.283Z"
   },
   {
     "createdAt": "2026-09-15T05:36:58.236Z",

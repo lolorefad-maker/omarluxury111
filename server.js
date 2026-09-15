@@ -82,21 +82,32 @@ const upload = multer({
 });
 
 // ----------------------------------------------------
-// Database Layer: MongoDB Atlas Cloud + Local Fallback
+// Database Layer: MongoDB Atlas Cloud + Resilient Local Fallback
 // ----------------------------------------------------
 async function connectMongoDB() {
-  if (!MONGODB_URI) return;
+  if (!MONGODB_URI) {
+    console.warn('⚠️ MONGODB_URI not found in environment variables, running with local file storage.');
+    return;
+  }
   try {
-    await mongoose.connect(MONGODB_URI, { serverSelectionTimeoutMS: 6000 });
+    mongoose.set('strictQuery', false);
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 30000,
+      connectTimeoutMS: 30000,
+      socketTimeoutMS: 45000
+    });
     isMongoConnected = true;
     console.log('🍃 Connected to MongoDB Atlas Cloud Successfully!');
 
-    // Load latest data from Atlas into local cache on boot
+    // Initialize & sync collections safely without data loss
     for (const [key, Model] of Object.entries(MongoModels)) {
       try {
-        const docs = await Model.find({}).lean();
-        if (docs && docs.length > 0) {
-          const filePath = path.join(DATA_DIR, key + '.json');
+        const count = await Model.countDocuments();
+        const filePath = path.join(DATA_DIR, key + '.json');
+        
+        if (count > 0) {
+          // Atlas is the source of truth: load latest cloud data into local cache
+          const docs = await Model.find({}).lean();
           if (key === 'settings') {
             const settingObj = { ...docs[0] };
             delete settingObj._id;
@@ -111,43 +122,38 @@ async function connectMongoDB() {
             });
             fs.writeFileSync(filePath, JSON.stringify(cleanDocs, null, 2), 'utf-8');
           }
+          console.log(`[MongoDB Atlas] Loaded ${count} ${key} from Cloud into local cache.`);
+        } else {
+          // Cloud collection is empty: seed from local seed file if available
+          const localData = readData(key + '.json');
+          if (Array.isArray(localData) && localData.length > 0) {
+            await Model.insertMany(localData);
+            console.log(`[MongoDB Atlas] Seeded ${localData.length} ${key} into Cloud.`);
+          } else if (localData && typeof localData === 'object' && Object.keys(localData).length > 0) {
+            await Model.create(localData);
+            console.log(`[MongoDB Atlas] Seeded settings into Cloud.`);
+          }
         }
       } catch (colErr) {
-        console.warn(`[MongoDB Atlas] Notice reading ${key}:`, colErr.message);
+        console.warn(`[MongoDB Atlas] Notice reading/seeding ${key}:`, colErr.message);
       }
     }
   } catch (err) {
-    console.warn('⚠️ MongoDB Atlas warning, running with local storage fallback:', err.message);
+    isMongoConnected = false;
+    console.warn('⚠️ MongoDB Atlas connection warning, running with local storage fallback:', err.message);
   }
 }
 
+mongoose.connection.on('disconnected', () => {
+  isMongoConnected = false;
+  console.warn('⚠️ MongoDB disconnected.');
+});
+mongoose.connection.on('connected', () => {
+  isMongoConnected = true;
+  console.log('🍃 MongoDB reconnected.');
+});
+
 connectMongoDB();
-
-// Syncs of the same collection run one after another: two overlapping deleteMany/insertMany pairs
-// (e.g. two orders placed at the same moment) would otherwise duplicate or drop records in Atlas.
-const syncQueues = {};
-
-function syncToMongo(filename, data) {
-  if (!isMongoConnected) return;
-  const key = filename.replace('.json', '');
-  const Model = MongoModels[key];
-  if (!Model) return;
-
-  syncQueues[key] = (syncQueues[key] || Promise.resolve()).then(async () => {
-    try {
-      await Model.deleteMany({});
-      if (Array.isArray(data)) {
-        if (data.length > 0) await Model.insertMany(data);
-      } else {
-        await Model.create(data);
-      }
-      console.log(`[MongoDB Atlas] Synced ${filename} (${Array.isArray(data) ? data.length : 1} records)`);
-    } catch (err) {
-      console.warn(`[MongoDB Atlas] Sync warning for ${filename}:`, err.message);
-    }
-  });
-  return syncQueues[key];
-}
 
 function readData(filename) {
   const filePath = path.join(DATA_DIR, filename);
@@ -165,7 +171,6 @@ function writeData(filename, data) {
   const filePath = path.join(DATA_DIR, filename);
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-    syncToMongo(filename, data);
     return true;
   } catch (err) {
     console.error(`Error writing ${filename}:`, err);
@@ -173,9 +178,35 @@ function writeData(filename, data) {
   }
 }
 
+// Asynchronous Data Access Layer: queries MongoDB directly when online, falls back to disk
+async function getData(key) {
+  if (isMongoConnected && MongoModels[key]) {
+    try {
+      const docs = await MongoModels[key].find({}).lean();
+      if (docs && docs.length > 0) {
+        if (key === 'settings') {
+          const settingObj = { ...docs[0] };
+          delete settingObj._id;
+          delete settingObj.__v;
+          return settingObj;
+        }
+        return docs.map(d => {
+          const copy = { ...d };
+          delete copy._id;
+          delete copy.__v;
+          return copy;
+        });
+      }
+    } catch (err) {
+      console.warn(`[MongoDB getData] Error for ${key}:`, err.message);
+    }
+  }
+  return readData(key + '.json');
+}
+
 // ----------------------------------------------------
 // Admin guard: anything that changes store data or exposes customer data needs the admin PIN
-// (header "x-admin-pin"). Set ADMIN_PIN in the server's environment; settings.admin_pin is the local fallback.
+// (header "x-admin-pin"). Set ADMIN_PIN in the server's environment; settings.admin_pin or 123456 fallback.
 // ----------------------------------------------------
 const PUBLIC_API = [
   ['GET', /^\/products(\/[^/]+)?$/],
@@ -183,13 +214,15 @@ const PUBLIC_API = [
   ['GET', /^\/promo-cards$/],
   ['GET', /^\/reviews$/],
   ['GET', /^\/settings$/],
+  ['GET', /^\/db-status$/],
   ['POST', /^\/orders$/],
   ['POST', /^\/reviews$/],
   ['POST', /^\/coupons\/validate$/]
 ];
 
 function isAdminRequest(req) {
-  const expected = Buffer.from(String(process.env.ADMIN_PIN || readData('settings.json').admin_pin || ''));
+  const expectedPin = String(process.env.ADMIN_PIN || readData('settings.json').admin_pin || '123456');
+  const expected = Buffer.from(expectedPin);
   const given = Buffer.from(String(req.get('x-admin-pin') || ''));
   return expected.length > 0 && given.length === expected.length && crypto.timingSafeEqual(given, expected);
 }
@@ -198,6 +231,29 @@ app.use('/api', (req, res, next) => {
   const isPublic = req.query.all !== 'true' && PUBLIC_API.some(([method, path]) => req.method === method && path.test(req.path));
   if (isPublic || isAdminRequest(req)) return next();
   res.status(401).json({ success: false, message: 'Admin authorization required' });
+});
+
+// Database Health & Status Endpoint
+app.get('/api/db-status', async (req, res) => {
+  let productsCount = 0;
+  let ordersCount = 0;
+  if (isMongoConnected && MongoModels.products && MongoModels.orders) {
+    try {
+      productsCount = await MongoModels.products.countDocuments();
+      ordersCount = await MongoModels.orders.countDocuments();
+    } catch (e) {}
+  } else {
+    productsCount = (readData('products.json') || []).length;
+    ordersCount = (readData('orders.json') || []).length;
+  }
+
+  res.json({
+    connected: isMongoConnected,
+    storage: isMongoConnected ? 'MongoDB Atlas Cloud' : 'Local Fallback',
+    products_count: productsCount,
+    orders_count: ordersCount,
+    readyState: mongoose.connection.readyState
+  });
 });
 
 // ----------------------------------------------------
@@ -264,8 +320,8 @@ app.post('/api/upload-multiple', upload.array('images', 8), async (req, res) => 
 // ----------------------------------------------------
 // API: Products & Pricing Management
 // ----------------------------------------------------
-app.get('/api/products', (req, res) => {
-  let products = readData('products.json');
+app.get('/api/products', async (req, res) => {
+  let products = await getData('products');
   const { category, search, sort, is_new, featured } = req.query;
 
   // Filter only active for public requests (unless admin is querying)
@@ -305,22 +361,20 @@ app.get('/api/products', (req, res) => {
     products.sort((a, b) => b.price - a.price);
   } else if (sort === 'rating') {
     products.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-  } else {
-    // Default newest/order
   }
 
   res.json(products);
 });
 
-app.get('/api/products/:id', (req, res) => {
-  const products = readData('products.json');
+app.get('/api/products/:id', async (req, res) => {
+  const products = await getData('products');
   const product = products.find(p => p.id === req.params.id);
   if (!product) return res.status(404).json({ message: 'Product not found' });
   res.json(product);
 });
 
-app.post('/api/products', (req, res) => {
-  const products = readData('products.json');
+app.post('/api/products', async (req, res) => {
+  const products = await getData('products');
   const newProduct = {
     id: 'prod-' + Date.now(),
     title: req.body.title || 'Untitled Luxury Bag',
@@ -346,11 +400,20 @@ app.post('/api/products', (req, res) => {
 
   products.unshift(newProduct);
   writeData('products.json', products);
+
+  if (isMongoConnected && MongoModels.products) {
+    try {
+      await MongoModels.products.create(newProduct);
+    } catch (err) {
+      console.error('[MongoDB] Error creating product:', err.message);
+    }
+  }
+
   res.status(201).json({ success: true, product: newProduct });
 });
 
-app.put('/api/products/:id', (req, res) => {
-  const products = readData('products.json');
+app.put('/api/products/:id', async (req, res) => {
+  const products = await getData('products');
   const index = products.findIndex(p => p.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: 'Product not found' });
 
@@ -365,12 +428,21 @@ app.put('/api/products/:id', (req, res) => {
 
   products[index] = updated;
   writeData('products.json', products);
+
+  if (isMongoConnected && MongoModels.products) {
+    try {
+      await MongoModels.products.findOneAndUpdate({ id: req.params.id }, updated, { upsert: true, new: true });
+    } catch (err) {
+      console.error('[MongoDB] Error updating product:', err.message);
+    }
+  }
+
   res.json({ success: true, product: updated });
 });
 
 // Quick price update endpoint for Admin table
-app.patch('/api/products/:id/price', (req, res) => {
-  const products = readData('products.json');
+app.patch('/api/products/:id/price', async (req, res) => {
+  const products = await getData('products');
   const index = products.findIndex(p => p.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: 'Product not found' });
 
@@ -380,33 +452,55 @@ app.patch('/api/products/:id/price', (req, res) => {
   products[index].updated_at = new Date().toISOString();
 
   writeData('products.json', products);
+
+  if (isMongoConnected && MongoModels.products) {
+    try {
+      await MongoModels.products.updateOne(
+        { id: req.params.id },
+        { $set: { price: products[index].price, original_price: products[index].original_price, updated_at: products[index].updated_at } }
+      );
+    } catch (err) {
+      console.error('[MongoDB] Error patching price:', err.message);
+    }
+  }
+
   res.json({ success: true, product: products[index] });
 });
 
-app.delete('/api/products/:id', (req, res) => {
-  let products = readData('products.json');
+app.delete('/api/products/:id', async (req, res) => {
+  let products = await getData('products');
   const initialLen = products.length;
   products = products.filter(p => p.id !== req.params.id);
   if (products.length === initialLen) {
     return res.status(404).json({ message: 'Product not found' });
   }
+
   writeData('products.json', products);
+
+  if (isMongoConnected && MongoModels.products) {
+    try {
+      await MongoModels.products.deleteOne({ id: req.params.id });
+    } catch (err) {
+      console.error('[MongoDB] Error deleting product:', err.message);
+    }
+  }
+
   res.json({ success: true, message: 'Product deleted' });
 });
 
 // ----------------------------------------------------
 // API: Hero Banners & Offers
 // ----------------------------------------------------
-app.get('/api/banners', (req, res) => {
-  const banners = readData('banners.json');
+app.get('/api/banners', async (req, res) => {
+  const banners = await getData('banners');
   if (req.query.all === 'true') {
     return res.json(banners);
   }
   res.json(banners.filter(b => b.active));
 });
 
-app.post('/api/banners', (req, res) => {
-  const banners = readData('banners.json');
+app.post('/api/banners', async (req, res) => {
+  const banners = await getData('banners');
   const newBanner = {
     id: 'banner-' + Date.now(),
     title: req.body.title || 'New Luxury Offer',
@@ -422,11 +516,20 @@ app.post('/api/banners', (req, res) => {
   };
   banners.push(newBanner);
   writeData('banners.json', banners);
+
+  if (isMongoConnected && MongoModels.banners) {
+    try {
+      await MongoModels.banners.create(newBanner);
+    } catch (err) {
+      console.error('[MongoDB] Error creating banner:', err.message);
+    }
+  }
+
   res.status(201).json({ success: true, banner: newBanner });
 });
 
-app.put('/api/banners/:id', (req, res) => {
-  const banners = readData('banners.json');
+app.put('/api/banners/:id', async (req, res) => {
+  const banners = await getData('banners');
   const index = banners.findIndex(b => b.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: 'Banner not found' });
 
@@ -435,52 +538,79 @@ app.put('/api/banners/:id', (req, res) => {
     ...req.body
   };
   writeData('banners.json', banners);
+
+  if (isMongoConnected && MongoModels.banners) {
+    try {
+      await MongoModels.banners.findOneAndUpdate({ id: req.params.id }, banners[index], { upsert: true, new: true });
+    } catch (err) {
+      console.error('[MongoDB] Error updating banner:', err.message);
+    }
+  }
+
   res.json({ success: true, banner: banners[index] });
 });
 
-app.delete('/api/banners/:id', (req, res) => {
-  let banners = readData('banners.json');
+app.delete('/api/banners/:id', async (req, res) => {
+  let banners = await getData('banners');
   banners = banners.filter(b => b.id !== req.params.id);
   writeData('banners.json', banners);
+
+  if (isMongoConnected && MongoModels.banners) {
+    try {
+      await MongoModels.banners.deleteOne({ id: req.params.id });
+    } catch (err) {
+      console.error('[MongoDB] Error deleting banner:', err.message);
+    }
+  }
+
   res.json({ success: true });
 });
 
 // ----------------------------------------------------
-// API: Promo Cards (The 6 boxes from the photo)
+// API: Promo Cards
 // ----------------------------------------------------
-app.get('/api/promo-cards', (req, res) => {
-  const cards = readData('promo_cards.json');
+app.get('/api/promo-cards', async (req, res) => {
+  const cards = await getData('promo_cards');
   res.json(cards);
 });
 
-app.put('/api/promo-cards/:id', (req, res) => {
-  const cards = readData('promo_cards.json');
+app.put('/api/promo-cards/:id', async (req, res) => {
+  const cards = await getData('promo_cards');
   const idx = cards.findIndex(c => c.id === req.params.id);
   if (idx === -1) return res.status(404).json({ message: 'Card not found' });
   cards[idx] = { ...cards[idx], ...req.body };
   writeData('promo_cards.json', cards);
+
+  if (isMongoConnected && MongoModels.promo_cards) {
+    try {
+      await MongoModels.promo_cards.findOneAndUpdate({ id: req.params.id }, cards[idx], { upsert: true, new: true });
+    } catch (err) {
+      console.error('[MongoDB] Error updating promo card:', err.message);
+    }
+  }
+
   res.json({ success: true, card: cards[idx] });
 });
 
 // ----------------------------------------------------
 // API: Orders Management
 // ----------------------------------------------------
-app.get('/api/orders', (req, res) => {
-  const orders = readData('orders.json');
+app.get('/api/orders', async (req, res) => {
+  const orders = await getData('orders');
   res.json(orders);
 });
 
-app.get('/api/orders/:id', (req, res) => {
-  const orders = readData('orders.json');
+app.get('/api/orders/:id', async (req, res) => {
+  const orders = await getData('orders');
   const order = orders.find(o => o.id === req.params.id || o.order_number === req.params.id);
   if (!order) return res.status(404).json({ message: 'Order not found' });
   res.json(order);
 });
 
-app.post('/api/orders', (req, res) => {
-  const orders = readData('orders.json');
-  const settings = readData('settings.json');
-  const products = readData('products.json');
+app.post('/api/orders', async (req, res) => {
+  const orders = await getData('orders');
+  const settings = await getData('settings');
+  const products = await getData('products');
 
   const { customer_name, customer_phone, customer_city, customer_address, notes, items, payment_method, coupon_code } = req.body;
 
@@ -488,7 +618,7 @@ app.post('/api/orders', (req, res) => {
     return res.status(400).json({ success: false, message: 'Please provide all required fields' });
   }
 
-  // Prices, titles and images always come from the catalog, never from the browser
+  // Prices, titles and images always come from catalog
   if (!Array.isArray(items) || items.some(item => !products.find(prod => prod.id === item.product_id))) {
     return res.status(400).json({ success: false, message: 'One of the items is no longer available. Please refresh your bag.' });
   }
@@ -500,7 +630,7 @@ app.post('/api/orders', (req, res) => {
     const color = (p.colors || []).find(c => c.name === item.color);
     subtotal += p.price * qty;
 
-    // Decrement stock
+    // Decrement stock in catalog
     if (p.stock !== undefined) {
       p.stock = Math.max(0, p.stock - qty);
     }
@@ -518,7 +648,7 @@ app.post('/api/orders', (req, res) => {
   // Calculate discount if coupon applied
   let discount = 0;
   if (coupon_code) {
-    const coupons = readData('coupons.json');
+    const coupons = await getData('coupons');
     const coupon = coupons.find(c => c.code.toUpperCase() === coupon_code.toUpperCase() && c.active);
     if (coupon && subtotal >= (coupon.min_order || 0)) {
       discount = coupon.discount_type === 'percentage' 
@@ -528,8 +658,8 @@ app.post('/api/orders', (req, res) => {
   }
 
   // Calculate shipping
-  const freeThreshold = settings.free_shipping_threshold || 100;
-  const shippingFee = (subtotal >= freeThreshold) ? 0 : (settings.shipping_fee || 15);
+  const freeThreshold = settings.free_shipping_threshold || 50;
+  const shippingFee = (subtotal >= freeThreshold) ? 0 : (settings.shipping_fee || 3);
   const total = Math.max(0, subtotal - discount + shippingFee);
 
   const newOrder = {
@@ -552,13 +682,33 @@ app.post('/api/orders', (req, res) => {
 
   orders.unshift(newOrder);
   writeData('orders.json', orders);
-  writeData('products.json', products); // Save updated stock
+  writeData('products.json', products);
+
+  // Directly persist order & decrement stocks in MongoDB Atlas Cloud
+  if (isMongoConnected) {
+    try {
+      if (MongoModels.orders) {
+        await MongoModels.orders.create(newOrder);
+      }
+      if (MongoModels.products) {
+        for (const item of processedItems) {
+          await MongoModels.products.updateOne(
+            { id: item.product_id },
+            { $inc: { stock: -item.quantity } }
+          );
+        }
+      }
+      console.log(`[MongoDB Atlas] Successfully saved new order ${newOrder.order_number}`);
+    } catch (dbErr) {
+      console.error('[MongoDB Atlas] Error saving order to cloud:', dbErr.message);
+    }
+  }
 
   res.status(201).json({ success: true, order: newOrder });
 });
 
-app.patch('/api/orders/:id/status', (req, res) => {
-  const orders = readData('orders.json');
+app.patch('/api/orders/:id/status', async (req, res) => {
+  const orders = await getData('orders');
   const index = orders.findIndex(o => o.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: 'Order not found' });
 
@@ -572,21 +722,41 @@ app.patch('/api/orders/:id/status', (req, res) => {
   orders[index].updated_at = new Date().toISOString();
   writeData('orders.json', orders);
 
+  if (isMongoConnected && MongoModels.orders) {
+    try {
+      await MongoModels.orders.updateOne(
+        { id: req.params.id },
+        { $set: { status, updated_at: orders[index].updated_at } }
+      );
+    } catch (err) {
+      console.error('[MongoDB] Error updating order status:', err.message);
+    }
+  }
+
   res.json({ success: true, order: orders[index] });
 });
 
-app.delete('/api/orders/:id', (req, res) => {
-  let orders = readData('orders.json');
+app.delete('/api/orders/:id', async (req, res) => {
+  let orders = await getData('orders');
   orders = orders.filter(o => o.id !== req.params.id);
   writeData('orders.json', orders);
+
+  if (isMongoConnected && MongoModels.orders) {
+    try {
+      await MongoModels.orders.deleteOne({ id: req.params.id });
+    } catch (err) {
+      console.error('[MongoDB] Error deleting order:', err.message);
+    }
+  }
+
   res.json({ success: true });
 });
 
 // ----------------------------------------------------
 // API: Reviews & Testimonials
 // ----------------------------------------------------
-app.get('/api/reviews', (req, res) => {
-  const reviews = readData('reviews.json');
+app.get('/api/reviews', async (req, res) => {
+  const reviews = await getData('reviews');
   if (req.query.all === 'true') {
     return res.json(reviews);
   }
@@ -594,8 +764,8 @@ app.get('/api/reviews', (req, res) => {
   res.json(reviews.filter(r => r.status === 'approved'));
 });
 
-app.post('/api/reviews', (req, res) => {
-  const reviews = readData('reviews.json');
+app.post('/api/reviews', async (req, res) => {
+  const reviews = await getData('reviews');
   const { author_name, product_name, rating, comment } = req.body;
 
   if (!author_name || !comment) {
@@ -609,41 +779,71 @@ app.post('/api/reviews', (req, res) => {
     rating: Math.min(5, Math.max(1, parseInt(rating) || 5)),
     comment: String(comment).slice(0, 2000),
     verified: false,
-    status: isAdminRequest(req) ? 'approved' : 'pending', // visitor reviews wait for admin approval
+    status: isAdminRequest(req) ? 'approved' : 'pending',
     created_at: new Date().toISOString()
   };
 
   reviews.unshift(newReview);
   writeData('reviews.json', reviews);
+
+  if (isMongoConnected && MongoModels.reviews) {
+    try {
+      await MongoModels.reviews.create(newReview);
+    } catch (err) {
+      console.error('[MongoDB] Error saving review:', err.message);
+    }
+  }
+
   res.status(201).json({ success: true, review: newReview });
 });
 
-app.patch('/api/reviews/:id/approve', (req, res) => {
-  const reviews = readData('reviews.json');
+app.patch('/api/reviews/:id/approve', async (req, res) => {
+  const reviews = await getData('reviews');
   const index = reviews.findIndex(r => r.id === req.params.id);
   if (index === -1) return res.status(404).json({ message: 'Review not found' });
 
   reviews[index].status = req.body.status || 'approved';
   writeData('reviews.json', reviews);
+
+  if (isMongoConnected && MongoModels.reviews) {
+    try {
+      await MongoModels.reviews.updateOne(
+        { id: req.params.id },
+        { $set: { status: reviews[index].status } }
+      );
+    } catch (err) {
+      console.error('[MongoDB] Error approving review:', err.message);
+    }
+  }
+
   res.json({ success: true, review: reviews[index] });
 });
 
-app.delete('/api/reviews/:id', (req, res) => {
-  let reviews = readData('reviews.json');
+app.delete('/api/reviews/:id', async (req, res) => {
+  let reviews = await getData('reviews');
   reviews = reviews.filter(r => r.id !== req.params.id);
   writeData('reviews.json', reviews);
+
+  if (isMongoConnected && MongoModels.reviews) {
+    try {
+      await MongoModels.reviews.deleteOne({ id: req.params.id });
+    } catch (err) {
+      console.error('[MongoDB] Error deleting review:', err.message);
+    }
+  }
+
   res.json({ success: true });
 });
 
 // ----------------------------------------------------
 // API: Coupons
 // ----------------------------------------------------
-app.get('/api/coupons', (req, res) => {
-  res.json(readData('coupons.json'));
+app.get('/api/coupons', async (req, res) => {
+  res.json(await getData('coupons'));
 });
 
-app.post('/api/coupons/validate', (req, res) => {
-  const coupons = readData('coupons.json');
+app.post('/api/coupons/validate', async (req, res) => {
+  const coupons = await getData('coupons');
   const { code, amount } = req.body;
   if (!code) return res.status(400).json({ valid: false, message: 'Please enter a coupon code' });
 
@@ -669,8 +869,8 @@ app.post('/api/coupons/validate', (req, res) => {
   });
 });
 
-app.post('/api/coupons', (req, res) => {
-  const coupons = readData('coupons.json');
+app.post('/api/coupons', async (req, res) => {
+  const coupons = await getData('coupons');
   const newCoupon = {
     code: (req.body.code || 'SALE10').toUpperCase().trim(),
     discount_type: req.body.discount_type || 'percentage',
@@ -680,38 +880,67 @@ app.post('/api/coupons', (req, res) => {
   };
   coupons.push(newCoupon);
   writeData('coupons.json', coupons);
+
+  if (isMongoConnected && MongoModels.coupons) {
+    try {
+      await MongoModels.coupons.create(newCoupon);
+    } catch (err) {
+      console.error('[MongoDB] Error creating coupon:', err.message);
+    }
+  }
+
   res.status(201).json({ success: true, coupon: newCoupon });
 });
 
-app.delete('/api/coupons/:code', (req, res) => {
-  let coupons = readData('coupons.json');
-  coupons = coupons.filter(c => c.code.toUpperCase() !== req.params.code.toUpperCase());
+app.delete('/api/coupons/:code', async (req, res) => {
+  let coupons = await getData('coupons');
+  const code = req.params.code.toUpperCase();
+  coupons = coupons.filter(c => c.code.toUpperCase() !== code);
   writeData('coupons.json', coupons);
+
+  if (isMongoConnected && MongoModels.coupons) {
+    try {
+      await MongoModels.coupons.deleteOne({ code });
+    } catch (err) {
+      console.error('[MongoDB] Error deleting coupon:', err.message);
+    }
+  }
+
   res.json({ success: true });
 });
 
 // ----------------------------------------------------
 // API: Store Settings
 // ----------------------------------------------------
-app.get('/api/settings', (req, res) => {
-  const { admin_pin, ...publicSettings } = readData('settings.json');
+app.get('/api/settings', async (req, res) => {
+  const settings = await getData('settings');
+  const { admin_pin, ...publicSettings } = settings;
   res.json(publicSettings);
 });
 
-app.put('/api/settings', (req, res) => {
-  const current = readData('settings.json');
+app.put('/api/settings', async (req, res) => {
+  const current = await getData('settings');
   const updated = { ...current, ...req.body };
   writeData('settings.json', updated);
+
+  if (isMongoConnected && MongoModels.settings) {
+    try {
+      await MongoModels.settings.findOneAndUpdate({}, updated, { upsert: true, new: true });
+    } catch (err) {
+      console.error('[MongoDB] Error saving settings:', err.message);
+    }
+  }
+
   res.json({ success: true, settings: updated });
 });
 
 // ----------------------------------------------------
 // API: Stats Overview (For Admin Dashboard)
 // ----------------------------------------------------
-app.get('/api/stats', (req, res) => {
-  const orders = readData('orders.json');
-  const products = readData('products.json');
-  const reviews = readData('reviews.json');
+app.get('/api/stats', async (req, res) => {
+  const orders = await getData('orders');
+  const products = await getData('products');
+  const reviews = await getData('reviews');
 
   const totalRevenue = orders
     .filter(o => o.status !== 'Cancelled')

@@ -907,7 +907,39 @@ window.closeModal = function (id) {
   if (m) m.classList.remove('open');
 };
 
+async function checkDatabaseStatus() {
+  const badge = document.getElementById('db-status-badge');
+  const dot = document.getElementById('db-status-dot');
+  const text = document.getElementById('db-status-text');
+  if (!badge || !dot || !text) return;
+
+  try {
+    const res = await fetch('/api/db-status');
+    const data = await res.json();
+    if (data.connected) {
+      badge.style.background = '#e8f5e9';
+      badge.style.borderColor = '#c8e6c9';
+      badge.style.color = '#2e7d32';
+      dot.style.background = '#2e7d32';
+      text.textContent = 'قاعدة بيانات سحابية: متصلة (محفوظة دائماً)';
+      badge.title = `قاعدة البيانات متصلة بنجاح: ${data.products_count} منتج، ${data.orders_count} طلب في السحابة.`;
+    } else {
+      badge.style.background = '#fff3e0';
+      badge.style.borderColor = '#ffe0b2';
+      badge.style.color = '#e65100';
+      dot.style.background = '#e65100';
+      text.textContent = 'تنبيه: تخزين محلي مؤقت (غير متصل بالسحابة)';
+      badge.title = 'تأكد من إعداد متغير البيئة MONGODB_URI و IP Whitelist في MongoDB Atlas';
+    }
+  } catch (err) {
+    if (dot) dot.style.background = '#d32f2f';
+    if (text) text.textContent = 'خطأ في فحص قاعدة البيانات';
+  }
+}
+
 // Start on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+  checkDatabaseStatus();
   loadStats();
+  setInterval(checkDatabaseStatus, 25000);
 });
