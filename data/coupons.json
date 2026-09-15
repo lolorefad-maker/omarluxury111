@@ -1,0 +1,20 @@
+[
+  {
+    "code": "LUXURY10",
+    "discount_type": "percentage",
+    "discount_value": 10,
+    "min_order": 80,
+    "active": true,
+    "createdAt": "2026-09-15T02:06:39.256Z",
+    "updatedAt": "2026-09-15T02:06:39.256Z"
+  },
+  {
+    "code": "WELCOME20",
+    "discount_type": "fixed",
+    "discount_value": 20,
+    "min_order": 150,
+    "active": true,
+    "createdAt": "2026-09-15T02:06:39.257Z",
+    "updatedAt": "2026-09-15T02:06:39.257Z"
+  }
+]

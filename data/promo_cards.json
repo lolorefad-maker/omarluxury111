@@ -1,0 +1,68 @@
+[
+  {
+    "createdAt": "2026-09-15T05:36:59.563Z",
+    "updatedAt": "2026-09-15T05:36:59.563Z",
+    "id": "promo-1",
+    "category": "Tote Bags",
+    "badge": "Sale 30% Off",
+    "button_text": "Shop Now",
+    "button_link": "#tote-bags",
+    "image_url": "/images/collection/tophandle-dome-noir.jpg",
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:59.564Z",
+    "updatedAt": "2026-09-15T05:36:59.564Z",
+    "id": "promo-2",
+    "category": "Shoulder Bags",
+    "badge": "New Arrivals",
+    "button_text": "Shop Now",
+    "button_link": "#shoulder-bags",
+    "image_url": "/images/collection/shoulder-baguette-mosaic.jpg",
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:59.564Z",
+    "updatedAt": "2026-09-15T05:36:59.564Z",
+    "id": "promo-3",
+    "category": "Crossbody Bags",
+    "badge": "Sale 20% Off",
+    "button_text": "Shop Now",
+    "button_link": "#crossbody-bags",
+    "image_url": "/images/collection/crossbody-chevron-suede-cognac.jpg",
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:59.564Z",
+    "updatedAt": "2026-09-15T05:36:59.564Z",
+    "id": "promo-4",
+    "category": "Accessories",
+    "badge": "Special Picks",
+    "button_text": "Shop Now",
+    "button_link": "#accessories",
+    "image_url": "/images/collection/belt-web-stripe-ivory.jpg",
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:59.565Z",
+    "updatedAt": "2026-09-15T05:36:59.565Z",
+    "id": "promo-5",
+    "category": "Best Seller",
+    "badge": "Top Rated Bags",
+    "button_text": "Shop Now",
+    "button_link": "#best-sellers",
+    "image_url": "/images/collection/shoulder-chain-flap-noir.jpg",
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:59.565Z",
+    "updatedAt": "2026-09-15T05:36:59.565Z",
+    "id": "promo-6",
+    "category": "Clutches",
+    "badge": "New Collection",
+    "button_text": "Shop Now",
+    "button_link": "#clutches",
+    "image_url": "/images/collection/clutch-chevron-wristlet-noir.jpg",
+    "active": true
+  }
+]

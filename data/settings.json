@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-09-15T05:37:00.984Z",
+  "updatedAt": "2026-09-15T05:37:00.984Z",
+  "store_name": "MUCCI LUXURY",
+  "tagline": "Timeless Elegance",
+  "announcement": "Free Shipping On Orders From $100 / Up To 30 Days Return",
+  "currency_symbol": "$",
+  "currency_code": "USD",
+  "shipping_fee": 15,
+  "free_shipping_threshold": 100,
+  "whatsapp_number": "+972599000000",
+  "contact_email": "contact@mucciluxury.com",
+  "instagram_url": "https://instagram.com",
+  "admin_pin": "123456"
+}

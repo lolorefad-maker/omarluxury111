@@ -1,0 +1,650 @@
+[
+  {
+    "createdAt": "2026-09-15T05:36:58.229Z",
+    "updatedAt": "2026-09-15T05:36:58.229Z",
+    "id": "prod-sh-01",
+    "title": "Fendi Baguette — Multicolour FF Terry",
+    "subtitle": "The '90s icon in multicolour FF terry with tan leather",
+    "description": "Fendi's most famous silhouette, reworked in textured multicolour FF terry jacquard framed by smooth tan leather piping. The signature FF buckle clasp sits on a leather tab; carry it tucked under the arm by the rolled top handle, or clip on the wide leather strap for shoulder or crossbody wear. Fits phone, card case, keys and lipstick.",
+    "category": "Shoulder Bags",
+    "price": 189,
+    "original_price": 245,
+    "badge": "New",
+    "image": "/images/collection/shoulder-baguette-mosaic.jpg",
+    "images": [
+      "/images/collection/shoulder-baguette-mosaic.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Multicolour FF",
+        "hex": "#b07a4f",
+        "image": "/images/collection/shoulder-baguette-mosaic.jpg"
+      }
+    ],
+    "stock": 12,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.236Z",
+    "updatedAt": "2026-09-15T05:36:58.236Z",
+    "id": "prod-sh-02",
+    "title": "Louis Vuitton Empreinte S-Lock Flap — Noir",
+    "subtitle": "Monogram Empreinte leather with gold chain & top handle",
+    "description": "Supple grained leather embossed with the Monogram Empreinte pattern, closed by the House's polished gold-tone S-lock. Carry it by the slim leather top handle, or sling the chunky gold chain over the shoulder for evening. A structured flap with a softly rounded body — the black-and-gold piece a wardrobe is built around.",
+    "category": "Shoulder Bags",
+    "price": 199,
+    "original_price": 259,
+    "badge": "Best Seller",
+    "image": "/images/collection/shoulder-chain-flap-noir.jpg",
+    "images": [
+      "/images/collection/shoulder-chain-flap-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Noir",
+        "hex": "#151515",
+        "image": "/images/collection/shoulder-chain-flap-noir.jpg"
+      }
+    ],
+    "stock": 10,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.237Z",
+    "updatedAt": "2026-09-15T05:36:58.237Z",
+    "id": "prod-th-01",
+    "title": "Celine Triomphe Top Handle — Noir & Tan",
+    "subtitle": "Coated canvas & tan leather with the gold Triomphe clasp",
+    "description": "A structured top-handle flap in fine cross-grain coated canvas, edged in tan leather with contrast stitching. The sculpted gold Triomphe clasp — Celine's arc emblem — is the focal point; a rolled top handle and a detachable adjustable strap take it from desk to dinner. Compact, architectural, quietly Parisian.",
+    "category": "Tote Bags",
+    "price": 185,
+    "original_price": 239,
+    "badge": "New",
+    "image": "/images/collection/tophandle-flap-noir-tan.jpg",
+    "images": [
+      "/images/collection/tophandle-flap-noir-tan.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Noir & Tan",
+        "hex": "#3a2a22",
+        "image": "/images/collection/tophandle-flap-noir-tan.jpg"
+      }
+    ],
+    "stock": 10,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.238Z",
+    "updatedAt": "2026-09-15T05:36:58.238Z",
+    "id": "prod-cb-02",
+    "title": "Saint Laurent Cassandre Suede Crossbody — Cognac",
+    "subtitle": "Chevron-quilted suede with antique-gold Cassandre",
+    "description": "Velvety cognac suede, chevron-quilted in Saint Laurent's matelassé style and finished with the antique-gold Cassandre monogram. A slip pocket under the flap for quick-grab items and an adjustable matching suede strap with buckle. A warm autumn neutral that pairs as easily with denim as with camel tailoring.",
+    "category": "Crossbody Bags",
+    "price": 165,
+    "original_price": 210,
+    "badge": "New",
+    "image": "/images/collection/crossbody-chevron-suede-cognac.jpg",
+    "images": [
+      "/images/collection/crossbody-chevron-suede-cognac.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Cognac Suede",
+        "hex": "#9a5a2e",
+        "image": "/images/collection/crossbody-chevron-suede-cognac.jpg"
+      }
+    ],
+    "stock": 12,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.238Z",
+    "updatedAt": "2026-09-15T05:36:58.238Z",
+    "id": "prod-th-02",
+    "title": "Gucci Double G Top Handle Bag — Black",
+    "subtitle": "Structured dome in smooth black leather, antique-gold GG",
+    "description": "A sculpted dome silhouette in smooth black leather with piped edges, rolled twin handles and a two-way zip. The antique-gold Double G sits on a rounded leather tab — Gucci heritage, kept discreet. Spacious enough for a tablet, planner and daily essentials: the workday bag that goes straight to evening.",
+    "category": "Tote Bags",
+    "price": 229,
+    "original_price": 289,
+    "badge": "Best Seller",
+    "image": "/images/collection/tophandle-dome-noir.jpg",
+    "images": [
+      "/images/collection/tophandle-dome-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#151515",
+        "image": "/images/collection/tophandle-dome-noir.jpg"
+      }
+    ],
+    "stock": 8,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.238Z",
+    "updatedAt": "2026-09-15T05:36:58.238Z",
+    "id": "prod-sh-03",
+    "title": "Louis Vuitton Monogram Canvas Hobo",
+    "subtitle": "Slouchy zip-top hobo with natural leather trim & bunny charm",
+    "description": "The House's iconic Monogram coated canvas in a relaxed crescent hobo, trimmed in natural leather that deepens to honey with wear. Top zip closure, a single shoulder strap on gold swivel hooks, and a playful enamel bunny charm on a gold chain. Roomy enough for a tablet, wallet and every daily essential.",
+    "category": "Shoulder Bags",
+    "price": 169,
+    "original_price": 215,
+    "badge": "Popular",
+    "image": "/images/collection/shoulder-monogram-hobo-brown.jpg",
+    "images": [
+      "/images/collection/shoulder-monogram-hobo-brown.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Monogram Brown",
+        "hex": "#5a3a24",
+        "image": "/images/collection/shoulder-monogram-hobo-brown.jpg"
+      }
+    ],
+    "stock": 14,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.238Z",
+    "updatedAt": "2026-09-15T05:36:58.238Z",
+    "id": "prod-cb-01",
+    "title": "Louis Vuitton Empreinte Chain Hobo — Noir",
+    "subtitle": "Zip-top Monogram Empreinte hobo, gold chain & crossbody strap",
+    "description": "A curved zip-top hobo in black Monogram Empreinte leather with double gold zip pulls. Wear it three ways — with the chunky decorative gold chain, the adjustable leather crossbody strap, or both. Finished with a collectible character charm: hands-free ease with evening polish.",
+    "category": "Crossbody Bags",
+    "price": 179,
+    "original_price": 229,
+    "badge": "Popular",
+    "image": "/images/collection/crossbody-embossed-hobo-noir.jpg",
+    "images": [
+      "/images/collection/crossbody-embossed-hobo-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Noir",
+        "hex": "#151515",
+        "image": "/images/collection/crossbody-embossed-hobo-noir.jpg"
+      }
+    ],
+    "stock": 12,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.239Z",
+    "updatedAt": "2026-09-15T05:36:58.239Z",
+    "id": "prod-cl-01",
+    "title": "Saint Laurent Cassandre Matelassé Pouch — Noir",
+    "subtitle": "Chevron-quilted leather wristlet with silver Cassandre",
+    "description": "A flat zip pouch in soft chevron-quilted matelassé leather, finished with the polished silver-tone Cassandre monogram. The detachable wrist strap keeps evenings hands-free; by day it slips into a tote as an organiser. Holds phone, cards, keys and a compact.",
+    "category": "Clutches",
+    "price": 119,
+    "original_price": 149,
+    "badge": "Popular",
+    "image": "/images/collection/clutch-chevron-wristlet-noir.jpg",
+    "images": [
+      "/images/collection/clutch-chevron-wristlet-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Noir",
+        "hex": "#151515",
+        "image": "/images/collection/clutch-chevron-wristlet-noir.jpg"
+      }
+    ],
+    "stock": 16,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.239Z",
+    "updatedAt": "2026-09-15T05:36:58.239Z",
+    "id": "prod-th-04",
+    "title": "Fendi Peekaboo ISeeU Selleria",
+    "subtitle": "Gold twist-lock top handle with whipstitched edges",
+    "description": "Fendi's Peekaboo ISeeU: a structured two-compartment top-handle bag whose signature gold twist lock lets the front 'peek' open. The Selleria finish frames every edge in bold whipstitching, and the rolled top handle keeps the silhouette clean and architectural. Available in Black and Beige.",
+    "category": "Tote Bags",
+    "price": 219,
+    "original_price": 279,
+    "badge": "New",
+    "image": "/images/collection/fendi-peekaboo-selleria-black.jpg",
+    "images": [
+      "/images/collection/fendi-peekaboo-selleria-black.jpg",
+      "/images/collection/fendi-peekaboo-selleria-beige.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#151515",
+        "image": "/images/collection/fendi-peekaboo-selleria-black.jpg"
+      },
+      {
+        "name": "Beige",
+        "hex": "#d9c3ad",
+        "image": "/images/collection/fendi-peekaboo-selleria-beige.jpg"
+      }
+    ],
+    "stock": 12,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.239Z",
+    "updatedAt": "2026-09-15T05:36:58.239Z",
+    "id": "prod-th-05",
+    "title": "Fendi Peekaboo ISeeU Interlace",
+    "subtitle": "Woven interlaced leather front with gold twist lock",
+    "description": "The Peekaboo ISeeU with a sculptural interlaced front: strips of contrasting leather woven through the whipstitched frame for a crafted, three-dimensional texture. The signature gold twist lock, two roomy compartments and a rolled top handle. Colourways: Black & Blue, Beige & Olive and Sky Blue.",
+    "category": "Tote Bags",
+    "price": 239,
+    "original_price": 299,
+    "badge": "New",
+    "image": "/images/collection/fendi-peekaboo-interlace-black-blue.jpg",
+    "images": [
+      "/images/collection/fendi-peekaboo-interlace-black-blue.jpg",
+      "/images/collection/fendi-peekaboo-interlace-beige-olive.jpg",
+      "/images/collection/fendi-peekaboo-interlace-sky.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black & Blue",
+        "hex": "#1e2a44",
+        "image": "/images/collection/fendi-peekaboo-interlace-black-blue.jpg"
+      },
+      {
+        "name": "Beige & Olive",
+        "hex": "#cdbb9a",
+        "image": "/images/collection/fendi-peekaboo-interlace-beige-olive.jpg"
+      },
+      {
+        "name": "Sky Blue",
+        "hex": "#b9c9d6",
+        "image": "/images/collection/fendi-peekaboo-interlace-sky.jpg"
+      }
+    ],
+    "stock": 10,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.239Z",
+    "updatedAt": "2026-09-15T05:36:58.239Z",
+    "id": "prod-th-06",
+    "title": "Fendi Peekaboo ISeeU FF — Black",
+    "subtitle": "Tonal FF-patterned leather with FENDI logo strap",
+    "description": "The black Peekaboo ISeeU worked in a tonal FF pattern, with the signature gold twist lock and a bold FENDI-lettered shoulder strap for hands-free wear. Two compartments and a rolled top handle — as sharp at the office as it is at dinner.",
+    "category": "Tote Bags",
+    "price": 249,
+    "original_price": 309,
+    "badge": "Popular",
+    "image": "/images/collection/fendi-peekaboo-ff-black.jpg",
+    "images": [
+      "/images/collection/fendi-peekaboo-ff-black.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black FF",
+        "hex": "#151515",
+        "image": "/images/collection/fendi-peekaboo-ff-black.jpg"
+      }
+    ],
+    "stock": 8,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.240Z",
+    "updatedAt": "2026-09-15T05:36:58.240Z",
+    "id": "prod-th-03",
+    "title": "Coach Rowan Satchel — Signature Canvas",
+    "subtitle": "Zip-top satchel in Signature canvas, eight colourways",
+    "description": "Coach's everyday Rowan satchel in Signature coated canvas, trimmed in smooth leather with rolled top handles, a full-length zip and the horse-and-carriage logo plaque. Side D-rings take a detachable strap for crossbody wear. Eight colourways, from classic Khaki/Saddle and Brown/Black to seasonal Denim and Chalk.",
+    "category": "Tote Bags",
+    "price": 159,
+    "original_price": 199,
+    "badge": "New",
+    "image": "/images/collection/coach-rowan-khaki-saddle.jpg",
+    "images": [
+      "/images/collection/coach-rowan-khaki-saddle.jpg",
+      "/images/collection/coach-rowan-brown-black.jpg",
+      "/images/collection/coach-rowan-charcoal-black.jpg",
+      "/images/collection/coach-rowan-light-khaki.jpg",
+      "/images/collection/coach-rowan-chalk-glacier.jpg",
+      "/images/collection/coach-rowan-denim.jpg",
+      "/images/collection/coach-rowan-chalk.jpg",
+      "/images/collection/coach-rowan-khaki-chalk.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Khaki/Saddle",
+        "hex": "#b08a5e",
+        "image": "/images/collection/coach-rowan-khaki-saddle.jpg"
+      },
+      {
+        "name": "Brown/Black",
+        "hex": "#3b2a22",
+        "image": "/images/collection/coach-rowan-brown-black.jpg"
+      },
+      {
+        "name": "Charcoal/Black",
+        "hex": "#2b2b2e",
+        "image": "/images/collection/coach-rowan-charcoal-black.jpg"
+      },
+      {
+        "name": "Light Khaki",
+        "hex": "#d7c4ad",
+        "image": "/images/collection/coach-rowan-light-khaki.jpg"
+      },
+      {
+        "name": "Chalk/Glacier",
+        "hex": "#e9e7e1",
+        "image": "/images/collection/coach-rowan-chalk-glacier.jpg"
+      },
+      {
+        "name": "Denim",
+        "hex": "#2c3e63",
+        "image": "/images/collection/coach-rowan-denim.jpg"
+      },
+      {
+        "name": "Chalk",
+        "hex": "#efe8da",
+        "image": "/images/collection/coach-rowan-chalk.jpg"
+      },
+      {
+        "name": "Khaki/Chalk",
+        "hex": "#c9a97f",
+        "image": "/images/collection/coach-rowan-khaki-chalk.jpg"
+      }
+    ],
+    "stock": 30,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.240Z",
+    "updatedAt": "2026-09-15T05:36:58.240Z",
+    "id": "prod-cb-03",
+    "title": "Coach Mini Rowan Crossbody — Khaki/Chalk",
+    "subtitle": "Mini zip-top barrel bag with adjustable leather strap",
+    "description": "The Rowan in miniature: Signature coated canvas in Khaki with Chalk leather trim, gold-tone zip and hardware, and an adjustable saddle-tan leather strap for crossbody or shoulder wear. Holds phone, cards, keys and lip essentials.",
+    "category": "Crossbody Bags",
+    "price": 119,
+    "original_price": 149,
+    "badge": "New",
+    "image": "/images/collection/coach-mini-rowan-khaki-chalk.jpg",
+    "images": [
+      "/images/collection/coach-mini-rowan-khaki-chalk.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Khaki/Chalk",
+        "hex": "#c9a97f",
+        "image": "/images/collection/coach-mini-rowan-khaki-chalk.jpg"
+      }
+    ],
+    "stock": 15,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": true,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.240Z",
+    "updatedAt": "2026-09-15T05:36:58.240Z",
+    "id": "prod-sh-05",
+    "title": "Chanel Quilted Drawstring Bag",
+    "subtitle": "Diamond-quilted grained leather, CC pocket & chain straps",
+    "description": "Diamond-quilted grained leather in a soft drawstring silhouette, with a flap front pocket stamped with the gold CC and leather-woven gold chain straps. The drawstring top keeps everything secure while the slouchy body holds the day's essentials. In Beige and Caramel.",
+    "category": "Shoulder Bags",
+    "price": 229,
+    "original_price": 289,
+    "badge": "New",
+    "image": "/images/collection/chanel-drawstring-beige.jpg",
+    "images": [
+      "/images/collection/chanel-drawstring-beige.jpg",
+      "/images/collection/chanel-drawstring-caramel.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Beige",
+        "hex": "#c8a88a",
+        "image": "/images/collection/chanel-drawstring-beige.jpg"
+      },
+      {
+        "name": "Caramel",
+        "hex": "#a8612f",
+        "image": "/images/collection/chanel-drawstring-caramel.jpg"
+      }
+    ],
+    "stock": 10,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.240Z",
+    "updatedAt": "2026-09-15T05:36:58.240Z",
+    "id": "prod-sh-04",
+    "title": "Gucci Jetset GG Marmont Shoulder Bag — Black",
+    "subtitle": "Channel-quilted black leather with antique-gold Double G",
+    "description": "From the Jetset GG Marmont line: a flap shoulder bag in soft black leather with padded vertical channel quilting, closed by the antique-gold Double G. The sliding chain strap wears long on the shoulder or doubled for a shorter drop. Fits phone, cards and lipstick.",
+    "category": "Shoulder Bags",
+    "price": 169,
+    "original_price": 219,
+    "badge": "New",
+    "image": "/images/collection/gucci-jetset-marmont-black.jpg",
+    "images": [
+      "/images/collection/gucci-jetset-marmont-black.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#151515",
+        "image": "/images/collection/gucci-jetset-marmont-black.jpg"
+      }
+    ],
+    "stock": 10,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": true,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.240Z",
+    "updatedAt": "2026-09-15T05:36:58.240Z",
+    "id": "prod-ac-05",
+    "title": "Gucci GG Marmont Web Belt — Ivory",
+    "subtitle": "Ivory leather & green-red Web stripe, antique-gold Double G",
+    "description": "Ivory leather inset with Gucci's signature green-red-green Web stripe, fastened by the bold antique-gold GG Marmont buckle. A statement finish for summer whites and minimal outfits.",
+    "category": "Accessories",
+    "price": 99,
+    "original_price": 129,
+    "badge": "Best Seller",
+    "image": "/images/collection/belt-web-stripe-ivory.jpg",
+    "images": [
+      "/images/collection/belt-web-stripe-ivory.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Ivory Web",
+        "hex": "#efe9dc",
+        "image": "/images/collection/belt-web-stripe-ivory.jpg"
+      }
+    ],
+    "stock": 18,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.241Z",
+    "updatedAt": "2026-09-15T05:36:58.241Z",
+    "id": "prod-ac-03",
+    "title": "Dior CD Icon Buckle Belt — Black",
+    "subtitle": "Grained black leather with brushed-silver CD buckle",
+    "description": "Grained black leather with the sculptural brushed-silver CD Icon buckle and matching keeper — Dior's monogram in its most architectural form. A clean edge-painted finish that works with tailoring and denim alike.",
+    "category": "Accessories",
+    "price": 89,
+    "original_price": 115,
+    "badge": "New",
+    "image": "/images/collection/belt-monogram-buckle-noir.jpg",
+    "images": [
+      "/images/collection/belt-monogram-buckle-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black / Silver",
+        "hex": "#151515",
+        "image": "/images/collection/belt-monogram-buckle-noir.jpg"
+      }
+    ],
+    "stock": 18,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": false,
+    "active": true,
+    "updated_at": "2026-09-15T06:24:23.313Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.241Z",
+    "updatedAt": "2026-09-15T05:36:58.241Z",
+    "id": "prod-ac-04",
+    "title": "Gucci Double G Belt — Black & Silver",
+    "subtitle": "Contrast-stitched black leather, engraved silver GG buckle",
+    "description": "Soft black leather with cream contrast topstitching and a polished silver Double G buckle engraved with the GG motif. Reads sharp with suiting and relaxed with jeans.",
+    "category": "Accessories",
+    "price": 85,
+    "original_price": 110,
+    "badge": "Popular",
+    "image": "/images/collection/belt-double-ring-silver-noir.jpg",
+    "images": [
+      "/images/collection/belt-double-ring-silver-noir.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Black / Silver",
+        "hex": "#151515",
+        "image": "/images/collection/belt-double-ring-silver-noir.jpg"
+      }
+    ],
+    "stock": 18,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": false,
+    "active": true
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.241Z",
+    "updatedAt": "2026-09-15T05:36:58.241Z",
+    "id": "prod-ac-01",
+    "title": "Louis Vuitton Damier Ébène Zip Wallet",
+    "subtitle": "Compact L-zip wallet in Damier Ébène canvas",
+    "description": "A compact L-zip wallet in Damier Ébène coated canvas — the House's ebony-and-brown checkerboard — with a silver-tone zip pull. Card slots, a note compartment and coin space in a slim profile that fits any pocket or clutch.",
+    "category": "Accessories",
+    "price": 95,
+    "original_price": 125,
+    "badge": "New",
+    "image": "/images/collection/wallet-check-zip-ebony.jpg",
+    "images": [
+      "/images/collection/wallet-check-zip-ebony.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Damier Ébène",
+        "hex": "#5b3a26",
+        "image": "/images/collection/wallet-check-zip-ebony.jpg"
+      }
+    ],
+    "stock": 20,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": false,
+    "active": true,
+    "updated_at": "2026-09-15T06:24:23.322Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:36:58.241Z",
+    "updatedAt": "2026-09-15T05:36:58.241Z",
+    "id": "prod-ac-02",
+    "title": "Louis Vuitton Zippy Wallet — Damier Graphite",
+    "subtitle": "Zip-around long wallet in Damier Graphite canvas",
+    "description": "The classic zip-around Zippy Wallet in Damier Graphite coated canvas — black and charcoal, understated and scratch-resistant. Multiple card slots, note compartments and a zipped coin pocket keep everything organised. A refined everyday piece and an easy gift.",
+    "category": "Accessories",
+    "price": 110,
+    "original_price": 139,
+    "badge": "Popular",
+    "image": "/images/collection/wallet-check-zippy-graphite.jpg",
+    "images": [
+      "/images/collection/wallet-check-zippy-graphite.jpg"
+    ],
+    "colors": [
+      {
+        "name": "Damier Graphite",
+        "hex": "#3a3a3a",
+        "image": "/images/collection/wallet-check-zippy-graphite.jpg"
+      }
+    ],
+    "stock": 20,
+    "rating": 5,
+    "reviews_count": 0,
+    "featured": false,
+    "is_new_arrival": false,
+    "active": true
+  }
+]

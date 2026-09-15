@@ -1,0 +1,62 @@
+[
+  {
+    "createdAt": "2026-09-15T05:37:02.614Z",
+    "updatedAt": "2026-09-15T05:37:02.614Z",
+    "id": "rev-1789414890591",
+    "author_name": "Maryam S.",
+    "product_name": "Luna Shoulder Bag",
+    "rating": 5,
+    "comment": "Stunning craftsmanship and elegant presentation!",
+    "verified": true,
+    "status": "approved",
+    "created_at": "2026-09-14T19:41:30.591Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:02.614Z",
+    "updatedAt": "2026-09-15T05:37:02.614Z",
+    "id": "rev-1789050000000",
+    "author_name": "Sophia Laurent",
+    "product_name": "Classic Tote Bag",
+    "rating": 5,
+    "comment": "The leather quality is beyond expectation! Extremely elegant stitching, smells rich, and holds all my everyday essentials comfortably. Truly feels like a  designer bag.",
+    "verified": true,
+    "status": "approved",
+    "created_at": "2026-09-10T14:20:00Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:02.614Z",
+    "updatedAt": "2026-09-15T05:37:02.614Z",
+    "id": "rev-1789121700000",
+    "author_name": "Elena R.",
+    "product_name": "Luna Shoulder Bag",
+    "rating": 5,
+    "comment": "Obsessed with the shape and soft cream tone. Arrived in a luxury dust bag with fast delivery. I receive compliments every single day!",
+    "verified": true,
+    "status": "approved",
+    "created_at": "2026-09-11T10:15:00Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:02.614Z",
+    "updatedAt": "2026-09-15T05:37:02.614Z",
+    "id": "rev-1789238400000",
+    "author_name": "Nour Al-Hassan",
+    "product_name": "Quilted Crossbody Bag",
+    "rating": 5,
+    "comment": "جودة خيالية وتفاصيل مميزة جداً! الجلد ناعم وفخم والسلسلة الذهبية ثقيلة وتتحمل. التوصيل كان سريع والتعامل راقي جداً.",
+    "verified": true,
+    "status": "approved",
+    "created_at": "2026-09-12T18:40:00Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:02.614Z",
+    "updatedAt": "2026-09-15T05:37:02.614Z",
+    "id": "rev-1789291800000",
+    "author_name": "Amira K.",
+    "product_name": "Elegant Clutch",
+    "rating": 5,
+    "comment": "Perfect for evening events and weddings. Compact yet holds phone, lipstick, and keys gracefully. 10/10 recommendation!",
+    "verified": true,
+    "status": "approved",
+    "created_at": "2026-09-13T09:30:00Z"
+  }
+]

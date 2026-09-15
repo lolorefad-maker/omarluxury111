@@ -1,0 +1,16 @@
+[
+  {
+    "createdAt": "2026-09-15T05:37:00.353Z",
+    "updatedAt": "2026-09-15T05:37:00.353Z",
+    "id": "banner-1",
+    "title": "Timeless Bags For Every Woman",
+    "subtitle": "Elevate your style with our elegant & premium collection.",
+    "button_text": "Shop Collection",
+    "button_link": "#shop",
+    "image_url": "/images/studio/hero_model.jpg",
+    "badge_text": "NEW COLLECTION 2026",
+    "discount_badge": "UP TO 30% OFF",
+    "active": true,
+    "sort_order": 1
+  }
+]

@@ -1,0 +1,132 @@
+[
+  {
+    "createdAt": "2026-09-15T05:37:01.793Z",
+    "updatedAt": "2026-09-15T05:37:01.793Z",
+    "id": "ord-1789416071588",
+    "order_number": "ORD-6276",
+    "customer_name": "Lolo Banikhalaf",
+    "customer_phone": "0789625727",
+    "customer_city": "West Des Moines",
+    "customer_address": "101 Jordan Creek Pkwy",
+    "notes": "",
+    "items": [
+      {
+        "product_id": "prod-19",
+        "title": "Portofino Envelope Evening Clutch",
+        "color": "Noir Black",
+        "price": 128,
+        "quantity": 1,
+        "image": "/uploads/luxury_bag_f1_15.jpg"
+      },
+      {
+        "product_id": "prod-20",
+        "title": "Torino Pebble Leather Satchel",
+        "color": "Noir Black",
+        "price": 139,
+        "quantity": 1,
+        "image": "/uploads/luxury_bag_f1_16.jpg"
+      }
+    ],
+    "subtotal": 267,
+    "shipping": 0,
+    "discount": 0,
+    "total": 267,
+    "payment_method": "Cash on Delivery",
+    "status": "Delivered",
+    "created_at": "2026-09-14T20:01:11.588Z",
+    "updated_at": "2026-09-14T23:08:38.329Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:01.794Z",
+    "updatedAt": "2026-09-15T05:37:01.794Z",
+    "id": "ord-1789414890575",
+    "order_number": "ORD-7746",
+    "customer_name": "Test VIP Customer",
+    "customer_phone": "+972599112233",
+    "customer_city": "Nablus",
+    "customer_address": "Rafidia Street",
+    "notes": "Deliver with gift card",
+    "items": [
+      {
+        "product_id": "prod-1",
+        "title": "Classic Tote Bag",
+        "color": "Cognac Brown",
+        "price": 129,
+        "quantity": 1,
+        "image": "/extracted/prod_tote_classic.jpg"
+      }
+    ],
+    "subtotal": 129,
+    "shipping": 0,
+    "discount": 0,
+    "total": 129,
+    "payment_method": "Cash on Delivery",
+    "status": "Delivered",
+    "created_at": "2026-09-14T19:41:30.575Z",
+    "updated_at": "2026-09-14T23:09:12.370Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:01.794Z",
+    "updatedAt": "2026-09-15T05:37:01.794Z",
+    "id": "ord-1789384800000",
+    "order_number": "ORD-9842",
+    "customer_name": "Sarah Al-Mansour",
+    "customer_phone": "+972591234567",
+    "customer_city": "Ramallah",
+    "customer_address": "Al-Irsal Street, Building 14",
+    "notes": "Please call before delivery in the afternoon.",
+    "items": [
+      {
+        "product_id": "prod-1",
+        "title": "Classic Tote Bag",
+        "color": "Cognac Brown",
+        "price": 129,
+        "quantity": 1,
+        "image": "/extracted/prod_tote_classic.jpg"
+      }
+    ],
+    "subtotal": 129,
+    "shipping": 0,
+    "discount": 0,
+    "total": 129,
+    "payment_method": "Cash on Delivery",
+    "status": "Processing",
+    "created_at": "2026-09-14T11:20:00Z"
+  },
+  {
+    "createdAt": "2026-09-15T05:37:01.794Z",
+    "updatedAt": "2026-09-15T05:37:01.794Z",
+    "id": "ord-1789400700000",
+    "order_number": "ORD-9843",
+    "customer_name": "Layla Haddad",
+    "customer_phone": "+972598765432",
+    "customer_city": "Jerusalem",
+    "customer_address": "Beit Hanina, Main Road",
+    "notes": "Urgent gift packaging needed please.",
+    "items": [
+      {
+        "product_id": "prod-3",
+        "title": "Quilted Crossbody Bag",
+        "color": "Noir Black",
+        "price": 89,
+        "quantity": 1,
+        "image": "/extracted/prod_quilted_crossbody.jpg"
+      },
+      {
+        "product_id": "prod-4",
+        "title": "Elegant Clutch",
+        "color": "Pearl White",
+        "price": 59,
+        "quantity": 1,
+        "image": "/extracted/prod_elegant_clutch.jpg"
+      }
+    ],
+    "subtotal": 148,
+    "shipping": 0,
+    "discount": 10,
+    "total": 138,
+    "payment_method": "Cash on Delivery",
+    "status": "Pending",
+    "created_at": "2026-09-14T15:45:00Z"
+  }
+]
