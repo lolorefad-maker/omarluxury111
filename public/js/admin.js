@@ -928,8 +928,10 @@ async function checkDatabaseStatus() {
       badge.style.borderColor = '#ffe0b2';
       badge.style.color = '#e65100';
       dot.style.background = '#e65100';
-      text.textContent = 'تنبيه: تخزين محلي مؤقت (غير متصل بالسحابة)';
-      badge.title = 'تأكد من إعداد متغير البيئة MONGODB_URI و IP Whitelist في MongoDB Atlas';
+      text.textContent = data.has_mongo_uri === false
+        ? 'تنبيه: MONGODB_URI غير مضاف على السيرفر — التعديلات والطلبات ستضيع'
+        : 'تنبيه: غير متصل بـ MongoDB Atlas — التعديلات والطلبات ستضيع';
+      badge.title = (data.mongo_error ? `السبب: ${data.mongo_error}\n` : '') + 'تأكد من إعداد متغير البيئة MONGODB_URI و Network Access (IP Whitelist) في MongoDB Atlas';
     }
   } catch (err) {
     if (dot) dot.style.background = '#d32f2f';

@@ -19,6 +19,7 @@ cloudinary.config({
 // MongoDB Atlas Configuration
 const MONGODB_URI = process.env.MONGODB_URI;
 let isMongoConnected = false;
+let mongoLastError = MONGODB_URI ? null : 'MONGODB_URI is not set on this server';
 
 const modelMap = {
   products: 'Product',
@@ -140,7 +141,11 @@ async function connectMongoDB() {
     }
   } catch (err) {
     isMongoConnected = false;
-    console.warn('⚠️ MongoDB Atlas connection warning, running with local storage fallback:', err.message);
+    mongoLastError = err.message;
+    // Never give up: while disconnected, changes only live on this server's temporary disk and are
+    // wiped when the host restarts or sleeps, so keep retrying until Atlas is reachable.
+    console.error('❌ MongoDB Atlas connection failed, retrying in 15s:', err.message);
+    setTimeout(connectMongoDB, 15000);
   }
 }
 
@@ -150,6 +155,7 @@ mongoose.connection.on('disconnected', () => {
 });
 mongoose.connection.on('connected', () => {
   isMongoConnected = true;
+  mongoLastError = null;
   console.log('🍃 MongoDB reconnected.');
 });
 
@@ -214,7 +220,6 @@ const PUBLIC_API = [
   ['GET', /^\/promo-cards$/],
   ['GET', /^\/reviews$/],
   ['GET', /^\/settings$/],
-  ['GET', /^\/db-status$/],
   ['POST', /^\/orders$/],
   ['POST', /^\/reviews$/],
   ['POST', /^\/coupons\/validate$/]
@@ -250,6 +255,8 @@ app.get('/api/db-status', async (req, res) => {
   res.json({
     connected: isMongoConnected,
     storage: isMongoConnected ? 'MongoDB Atlas Cloud' : 'Local Fallback',
+    has_mongo_uri: !!process.env.MONGODB_URI,
+    mongo_error: mongoLastError,
     products_count: productsCount,
     orders_count: ordersCount,
     readyState: mongoose.connection.readyState
