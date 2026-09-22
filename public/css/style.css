@@ -1408,7 +1408,10 @@ img {
 
 /* Mobile Header Controls */
 .mobile-nav-toggle {
-  display: none;
+  /* shown on every screen size: the sidebar holds the category & brand navigation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: none;
   color: var(--color-dark);
@@ -1431,7 +1434,8 @@ img {
   background: #ffffff;
   border-bottom: 1px solid var(--color-border);
 }
-.mobile-search-bar.active {
+.mobile-search-bar.active,
+.mobile-search-bar.open {
   display: block;
 }
 .mobile-search-input-wrap {
@@ -1462,7 +1466,8 @@ img {
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.mobile-nav-backdrop.active {
+.mobile-nav-backdrop.active,
+.mobile-nav-backdrop.open {
   opacity: 1;
   visibility: visible;
 }
@@ -1481,7 +1486,8 @@ img {
   display: flex;
   flex-direction: column;
 }
-.mobile-nav-drawer.active {
+.mobile-nav-drawer.active,
+.mobile-nav-drawer.open {
   transform: translateX(0);
 }
 .mobile-nav-drawer-header {
@@ -1509,6 +1515,128 @@ img {
 }
 .mobile-drawer-link:hover {
   color: var(--color-accent-gold-dark);
+}
+
+/* Sidebar groups: categories + brands */
+.mobile-nav-drawer-footer {
+  padding: 14px 20px 20px;
+  border-top: 1px solid var(--color-border);
+}
+.drawer-footer-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.drawer-group-title {
+  margin: 22px 4px 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-dark);
+}
+.drawer-count {
+  min-width: 26px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+.drawer-brand {
+  border-bottom: 1px solid var(--color-border);
+}
+.drawer-brand > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px;
+  cursor: pointer;
+}
+.drawer-brand > summary::-webkit-details-marker {
+  display: none;
+}
+.drawer-brand-name {
+  font-family: var(--font-cinzel);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+}
+.drawer-brand[open] .drawer-brand-name {
+  color: var(--color-accent-gold-dark);
+}
+.drawer-brand-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drawer-chev {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-text-light);
+  transition: transform 0.2s ease;
+}
+.drawer-brand[open] .drawer-chev {
+  transform: rotate(90deg);
+}
+.drawer-brand-subs {
+  padding: 0 0 10px 12px;
+}
+.drawer-sub-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 4px;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.drawer-sub-link:hover,
+.drawer-sub-all {
+  color: var(--color-dark);
+}
+.drawer-sub-all {
+  font-weight: 600;
+}
+
+/* Active brand/category label above the catalog grid */
+.catalog-active-filter {
+  display: flex;
+  justify-content: center;
+  margin: -16px 0 24px;
+}
+.catalog-active-filter[hidden] {
+  display: none;
+}
+.active-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px 7px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-dark);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.active-filter-pill button {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 11px;
+  line-height: 22px;
+  cursor: pointer;
 }
 
 /* Quick View Modal Styles */

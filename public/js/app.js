@@ -10,6 +10,7 @@ const State = {
   reviews: [],
   settings: {},
   activeCategory: 'all',
+  activeBrand: null,
   cart: JSON.parse(localStorage.getItem('mucci_cart') || '[]'),
   currency: localStorage.getItem('mucci_curr') || 'JOD',
   rates: {
@@ -218,6 +219,7 @@ async function initApp() {
     State.newArrivals = State.products.slice(0, 4);
     renderNewArrivals();
     renderCatalog();
+    renderDrawerNav();
 
     // 5. Reviews
     const resReviews = await fetch('/api/reviews');
@@ -280,21 +282,47 @@ function renderNewArrivals() {
   grid.innerHTML = State.newArrivals.map((prod) => createProductCardHTML(prod)).join('');
 }
 
+// ---- Brands & categories used by the catalog filter and the sidebar ----
+const KNOWN_BRANDS = ['Louis Vuitton', 'Christian Dior', 'Dior', 'Chanel', 'Hermès', 'Hermes', 'Gucci', 'Prada',
+  'Saint Laurent', 'YSL', 'Bottega Veneta', 'Celine', 'Fendi', 'Coach', 'Burberry', 'Valentino', 'Balenciaga',
+  'Givenchy', 'Miu Miu', 'Loewe', 'Versace', 'Goyard', 'Michael Kors', 'Tory Burch', 'Marc Jacobs'];
+const BRAND_ALIASES = { 'christian dior': 'Dior', 'hermes': 'Hermès', 'ysl': 'Saint Laurent' };
+
+const SHOP_CATEGORIES = [
+  { key: 'top handle', label: 'حقائب بمقبض • Top Handle' },
+  { key: 'tote', label: 'حقائب توت • Tote Bags' },
+  { key: 'shoulder', label: 'حقائب كتف • Shoulder Bags' },
+  { key: 'crossbody', label: 'كروس بودي • Crossbody Bags' },
+  { key: 'clutch', label: 'كلاتش ومناسبات • Clutches' },
+  { key: 'accessories', label: 'إكسسوارات • Accessories' },
+  { key: 'best seller', label: 'الأكثر مبيعاً • Best Sellers' }
+];
+
+// Brand comes from the product's brand field, otherwise from the start of its title ("Louis Vuitton Diane — ...")
+function getBrand(p) {
+  const title = (p.title || '').toLowerCase();
+  const raw = (p.brand || KNOWN_BRANDS.find(b => title.startsWith(b.toLowerCase())) || '').trim();
+  return BRAND_ALIASES[raw.toLowerCase()] || raw || 'Other';
+}
+
+function matchesCategory(p, cat) {
+  if (!cat || cat === 'all') return true;
+  const c = (p.category || '').toLowerCase();
+  const target = cat.toLowerCase();
+  // "Best Sellers" is a badge on the product, not a bag type
+  if (target.startsWith('best')) return (p.badge || '').toLowerCase() === 'best seller' || c.includes('best seller');
+  return c.includes(target);
+}
+
 // Render Full Catalog Grid
 function renderCatalog() {
   const grid = document.getElementById('catalog-grid');
   if (!grid) return;
 
-  let filtered = State.products;
-  if (State.activeCategory !== 'all') {
-    filtered = filtered.filter(p => {
-      const c = (p.category || '').toLowerCase();
-      const target = State.activeCategory.toLowerCase();
-      // "Best Sellers" is a badge on the product, not a bag type
-      if (target.startsWith('best')) return (p.badge || '').toLowerCase() === 'best seller' || c.includes('best seller');
-      return c.includes(target) || (target === 'tote' && c.includes('tote'));
-    });
-  }
+  const filtered = State.products.filter(p =>
+    matchesCategory(p, State.activeCategory) && (!State.activeBrand || getBrand(p) === State.activeBrand));
+
+  renderActiveFilter(grid);
 
   if (filtered.length === 0) {
     grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">No products found in this category.</div>`;
@@ -435,6 +463,79 @@ window.filterCategory = function (cat) {
     else btn.classList.remove('active');
   });
   renderCatalog();
+};
+
+// Label above the grid when a brand (or a category without its own tab) is selected, with one tap back to everything
+function renderActiveFilter(grid) {
+  let bar = document.getElementById('catalog-active-filter');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'catalog-active-filter';
+    bar.className = 'catalog-active-filter';
+    grid.parentNode.insertBefore(bar, grid);
+  }
+  const cat = SHOP_CATEGORIES.find(c => c.key === State.activeCategory);
+  const hasTab = !!document.querySelector(`.tab-btn[data-cat="${State.activeCategory}"]`);
+  const show = !!State.activeBrand || (!!cat && !hasTab);
+  const label = [State.activeBrand, cat && cat.label].filter(Boolean).join(' · ');
+  bar.hidden = !show;
+  bar.innerHTML = show
+    ? `<span class="active-filter-pill">${esc(label)}<button type="button" onclick="shopBy('all')" aria-label="عرض كل التشكيلة">✕</button></span>`
+    : '';
+}
+
+// Sidebar: categories and brands built from the live catalog, so new products and brands appear automatically
+function renderDrawerNav() {
+  const catBox = document.getElementById('drawer-categories');
+  const brandBox = document.getElementById('drawer-brands');
+  const allCount = document.getElementById('drawer-count-all');
+  if (!catBox || !brandBox) return;
+  if (allCount) allCount.textContent = State.products.length;
+
+  const count = (brand, cat) => State.products.filter(p => (!brand || getBrand(p) === brand) && matchesCategory(p, cat)).length;
+  const link = (label, n, cat, brand, cls) => `
+    <a class="${cls}" href="javascript:void(0)" data-cat="${cat}" data-brand="${esc(brand || '')}" onclick="shopBy(this.dataset.cat, this.dataset.brand)">
+      <span>${esc(label)}</span><span class="drawer-count">${n}</span>
+    </a>`;
+
+  catBox.innerHTML = SHOP_CATEGORIES
+    .map(c => ({ ...c, n: count(null, c.key) }))
+    .filter(c => c.n > 0)
+    .map(c => link(c.label, c.n, c.key, '', 'mobile-drawer-link'))
+    .join('');
+
+  const brands = [...new Set(State.products.map(getBrand))]
+    .map(name => ({ name, n: count(name, 'all') }))
+    .sort((a, b) => (a.name === 'Other') - (b.name === 'Other') || b.n - a.n || a.name.localeCompare(b.name));
+
+  brandBox.innerHTML = brands.map(b => {
+    const title = b.name === 'Other' ? 'أخرى • Other' : b.name;
+    const subs = SHOP_CATEGORIES
+      .filter(c => c.key !== 'best seller')
+      .map(c => ({ ...c, n: count(b.name, c.key) }))
+      .filter(c => c.n > 0);
+    return `
+      <details class="drawer-brand">
+        <summary>
+          <span class="drawer-brand-name">${esc(title)}</span>
+          <span class="drawer-brand-meta"><span class="drawer-count">${b.n}</span><span class="drawer-chev">›</span></span>
+        </summary>
+        <div class="drawer-brand-subs">
+          ${link(`كل منتجات ${title}`, b.n, 'all', b.name, 'drawer-sub-link drawer-sub-all')}
+          ${subs.map(c => link(c.label, c.n, c.key, b.name, 'drawer-sub-link')).join('')}
+        </div>
+      </details>`;
+  }).join('');
+}
+
+// Show the catalog filtered by category and/or brand (used by the sidebar and the filter label)
+window.shopBy = function (cat, brand) {
+  State.activeBrand = brand || null;
+  const drawer = document.getElementById('mobile-nav-drawer');
+  if (drawer && drawer.classList.contains('open')) toggleMobileNav();
+  filterCategory(cat || 'all');
+  const shopEl = document.getElementById('shop');
+  if (shopEl) shopEl.scrollIntoView({ behavior: 'smooth' });
 };
 
 // Mobile Navigation Drawer Toggle

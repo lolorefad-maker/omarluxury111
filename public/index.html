@@ -135,28 +135,31 @@
     </div>
   </header>
 
-  <!-- Slide-out Luxury Mobile Navigation Drawer -->
+  <!-- Slide-out Navigation Sidebar: categories + brands (lists are built from the live catalog in app.js) -->
   <div class="mobile-nav-drawer" id="mobile-nav-drawer">
-    <div class="mobile-nav-header">
+    <div class="mobile-nav-drawer-header">
       <div class="logo-text">
         <span class="brand-title font-cinzel" style="font-size:17px;">OMAR LUXURY</span>
         <span class="brand-tagline">HAUTE MAROQUINERIE</span>
       </div>
-      <button class="close-btn" onclick="toggleMobileNav()">✕</button>
+      <button class="close-btn" onclick="toggleMobileNav()" aria-label="إغلاق القائمة">✕</button>
     </div>
-    <ul class="mobile-nav-links">
-      <li><a href="#" onclick="toggleMobileNav()">الرئيسية • Home</a></li>
-      <li><a href="#shop" onclick="toggleMobileNav(); filterCategory('all')">كل التشكيلة • All Collection</a></li>
-      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('tote')">حقائب توت • Tote Bags</a></li>
-      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('shoulder')">حقائب كتف • Shoulder Bags</a></li>
-      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('crossbody')">كروس بودي • Crossbody Bags</a></li>
-      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('clutch')">كلاتش ومناسبات • Clutches</a></li>
-      <li><a href="javascript:void(0)" onclick="toggleMobileNav(); filterCategory('accessories')">إكسسوارات جلدية • Accessories</a></li>
-      <li><a href="#reviews" onclick="toggleMobileNav()">آراء العملاء • Reviews</a></li>
-      <li><a href="/admin" style="color:var(--color-accent-gold-dark); font-weight:700;">لوحة التحكم الإدارية • Admin</a></li>
-    </ul>
-    <div class="mobile-nav-footer">
-      <div style="font-size:12px; font-weight:600; color:var(--color-text-muted); margin-bottom:8px;">اختر عملة المتجر:</div>
+    <div class="mobile-nav-drawer-body">
+      <a class="mobile-drawer-link" href="#" onclick="toggleMobileNav()"><span>الرئيسية • Home</span></a>
+      <a class="mobile-drawer-link" href="javascript:void(0)" onclick="shopBy('all')">
+        <span>كل التشكيلة • All Collection</span><span class="drawer-count" id="drawer-count-all"></span>
+      </a>
+
+      <div class="drawer-group-title">الأقسام • Categories</div>
+      <div id="drawer-categories"></div>
+
+      <div class="drawer-group-title">البراندات • Brands</div>
+      <div id="drawer-brands"></div>
+
+      <a class="mobile-drawer-link" href="#reviews" onclick="toggleMobileNav()"><span>آراء العملاء • Reviews</span></a>
+    </div>
+    <div class="mobile-nav-drawer-footer">
+      <div class="drawer-footer-label">اختر عملة المتجر:</div>
       <select class="currency-select" style="width:100%; padding:10px; font-size:13px;" onchange="changeCurrency(this.value)">
         <option value="JOD" selected>JOD (د.أ - دينار أردني)</option>
         <option value="USD">USD ($ - دولار أمريكي)</option>
