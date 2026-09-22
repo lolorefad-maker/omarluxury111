@@ -397,17 +397,58 @@ img {
 }
 
 /* Section Titles */
+/* Section Titles & Ornate Headings */
 .section-header {
   text-align: center;
   margin-bottom: 48px;
+  position: relative;
+}
+
+.section-tag-gold {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-dark);
+  margin-bottom: 8px;
 }
 
 .section-title {
   font-size: 34px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-dark);
   letter-spacing: -0.01em;
   margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.section-subtitle {
+  font-size: 14.5px;
+  color: var(--color-text-muted);
+  max-width: 620px;
+  margin: 0 auto 12px;
+  line-height: 1.6;
+}
+
+.section-divider-ornate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px auto 0;
+}
+
+.section-divider-ornate .ornate-line {
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
+}
+
+.section-divider-ornate .ornate-icon {
+  font-size: 10px;
+  color: var(--color-accent-gold);
 }
 
 .section-divider {
@@ -415,6 +456,131 @@ img {
   height: 1.5px;
   background-color: var(--color-dark);
   margin: 0 auto;
+}
+
+/* ========================================================
+   Brand Logos Marquee Bar (شريط لوغوهات البراندات الفاخرة)
+   ======================================================== */
+.brand-bar-section {
+  background: #141414;
+  border-top: 1px solid #2a2825;
+  border-bottom: 1.5px solid #c59b3f;
+  padding: 16px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.brand-bar-inner {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.brand-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  white-space: nowrap;
+  animation: brandMarquee 38s linear infinite;
+}
+
+@keyframes brandMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.brand-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.brand-item {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #ede8e1;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.brand-item:hover {
+  color: #f7df99;
+  transform: scale(1.05);
+}
+
+.brand-sep {
+  font-size: 9px;
+  color: #c59b3f;
+  opacity: 0.85;
+}
+
+/* ========================================================
+   Quality Standards Section (معايير جودتنا التي تميزنا)
+   ======================================================== */
+.quality-standards-section {
+  padding: 60px 0 50px;
+  background: linear-gradient(180deg, #fbfaf8 0%, #f6f3ee 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.standards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.standard-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.standard-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 12px 28px rgba(197, 155, 63, 0.15);
+}
+
+.standard-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fcf9f4 0%, #ede7dc 100%);
+  border: 1.5px solid #dcd4c6;
+  color: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.standard-card:hover .standard-icon-wrap {
+  background: #141414;
+  color: #f3d489;
+  border-color: #c59b3f;
+  transform: scale(1.08);
+}
+
+.standard-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.standard-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
 }
 
 /* New Arrivals Product Grid (4 items side by side) */
@@ -1589,8 +1755,65 @@ img {
   }
 
   .hero-title {
-    font-size: 34px;
+    font-size: 32px !important;
+    line-height: 1.25 !important;
   }
+  .section-title {
+    font-size: 25px !important;
+    line-height: 1.3 !important;
+  }
+  .section-subtitle {
+    font-size: 13.5px !important;
+    padding: 0 10px;
+  }
+
+  /* Brand Marquee on Mobile */
+  .brand-bar-section {
+    padding: 12px 0;
+  }
+  .brand-item {
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+  }
+  .brand-marquee-track {
+    gap: 18px;
+    animation-duration: 25s;
+  }
+
+  /* Quality Standards Grid on Mobile */
+  .quality-standards-section {
+    padding: 40px 0 35px;
+  }
+  .standards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .standard-card {
+    padding: 18px 16px;
+    flex-direction: row;
+    text-align: right;
+    gap: 14px;
+    align-items: center;
+  }
+  .standard-icon-wrap {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    margin-bottom: 0;
+  }
+  .standard-icon-wrap svg {
+    width: 22px;
+    height: 22px;
+  }
+  .standard-title {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .standard-desc {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
   .promo-grid-6 {
     grid-template-columns: 1fr;
     gap: 14px;
