@@ -16,5 +16,21 @@
     "active": true,
     "createdAt": "2026-09-15T02:06:39.257Z",
     "updatedAt": "2026-09-15T02:06:39.257Z"
+  },
+  {
+    "code": "TESTADMIN271",
+    "discount_type": "percentage",
+    "discount_value": 10,
+    "min_order": 0,
+    "active": true,
+    "createdAt": "2026-09-22T21:30:42.211Z",
+    "updatedAt": "2026-09-22T21:30:42.211Z"
+  },
+  {
+    "code": "TESTADMIN187",
+    "discount_type": "percentage",
+    "discount_value": 15,
+    "min_order": 30,
+    "active": true
   }
 ]

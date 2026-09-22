@@ -1,245 +1,5 @@
 [
   {
-    "id": "prod-lv-capucines-scarlet",
-    "title": "Louis Vuitton Capucines Mini — Scarlet Red",
-    "subtitle": "Taurillon leather with tone-on-tone LV & floral charm",
-    "description": "حقيبة لويس فيتون كابوسين ميني الأيقونية المصنوعة من جلد التوريون المحبب الفاخر باللون الأحمر الياقوتي المفعم بالحيوية، مزدانة بقفل LV الأيقوني المكسو بالمينا وإطار ذهبي مصقول، مع ميدالية زهرة المونوغرام المذهبة. قطعة استثنائية لأرقى المناسبات.",
-    "category": "Top Handle",
-    "price": 60,
-    "original_price": 85,
-    "badge": "Most Exclusive",
-    "brand": "Louis Vuitton",
-    "image": "/images/collection/lv-capucines-mini-scarlet.jpg",
-    "images": [
-      "/images/collection/lv-capucines-mini-scarlet.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Scarlet Red",
-        "hex": "#C41E3A",
-        "image": "/images/collection/lv-capucines-mini-scarlet.jpg"
-      }
-    ],
-    "stock": 8,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.181Z",
-    "updatedAt": "2026-09-22T20:16:49.195Z"
-  },
-  {
-    "id": "prod-bv-andiamo-cognac",
-    "title": "Bottega Veneta Andiamo — Cognac Calfskin",
-    "subtitle": "Smooth calfskin with sculptural gold knot sliding strap",
-    "description": "حقيبة بوتيغا فينيتا أنديامو الفاخرة المصنوعة من جلد العجل الفاخر بلون الكراميل الدافئ (Cognac)، تتميز بتصميم ناعم مع حزام كتف مجدول انسيابي مزين بعقدة معدنية ذهبية منحوتة. قمة الفخامة الهادئة (Quiet Luxury).",
-    "category": "Top Handle",
-    "price": 58,
-    "original_price": 80,
-    "badge": "Trending Now",
-    "brand": "Bottega Veneta",
-    "image": "/images/collection/bv-andiamo-cognac.jpg",
-    "images": [
-      "/images/collection/bv-andiamo-cognac.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Cognac Brown",
-        "hex": "#9A5328",
-        "image": "/images/collection/bv-andiamo-cognac.jpg"
-      }
-    ],
-    "stock": 7,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-dior-cannage-cream",
-    "title": "Christian Dior Lady Dior Cannage — Pearl Cream",
-    "subtitle": "Quilted lambskin with contrast handle & gold D.I.O.R charms",
-    "description": "الأيقونة الخالدة ليدي ديور بجلد الحمل المبطن بتطريز الكاناج الهندسي الملكي باللون الكريمي اللؤلؤي، مع مقبض علوي متباين بلون الإسبريسو وحليات D.I.O.R المذهبة الأسطورية وشريطة جلدية أنيقة. عنوان الأنوثة الملكية.",
-    "category": "Top Handle",
-    "price": 58,
-    "original_price": 82,
-    "badge": "Iconic Classic",
-    "brand": "Dior",
-    "image": "/images/collection/lady-dior-cannage-cream.jpg",
-    "images": [
-      "/images/collection/lady-dior-cannage-cream.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Pearl Cream",
-        "hex": "#F3EFE6",
-        "image": "/images/collection/lady-dior-cannage-cream.jpg"
-      }
-    ],
-    "stock": 9,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-lv-onthego-bicolor",
-    "title": "Louis Vuitton Onthego PM — Bicolor Creme & Tourterelle",
-    "subtitle": "Giant Monogram Empreinte leather with silk twilly handle",
-    "description": "حقيبة لويس فيتون أون ذا جو بي إم الأنيقة بنمط المونوغرام العملاق المحفور على جلد الأمبرينت بدرجات الكريمي والتورتوريل (رمادي دافئ)، مع مقبض ملفوف بوشاح حريري تويلي أنيق. تجمع بين الاتساع العملي والفخامة الباريسية.",
-    "category": "Tote Bags",
-    "price": 56,
-    "original_price": 78,
-    "badge": "Best Seller",
-    "brand": "Louis Vuitton",
-    "image": "/images/collection/lv-onthego-bicolor.jpg",
-    "images": [
-      "/images/collection/lv-onthego-bicolor.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Creme Tourterelle",
-        "hex": "#E6D7C8",
-        "image": "/images/collection/lv-onthego-bicolor.jpg"
-      }
-    ],
-    "stock": 12,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-lv-vanity-monogram",
-    "title": "Louis Vuitton Vanity PM — Monogram & Reverse",
-    "subtitle": "Coated canvas vanity case with silk twilly & gold chain",
-    "description": "حقيبة لويس فيتون فانيتي بي إم العصرية بتنسيق ثنائي مذهل بين كانفاس المونوغرام الكلاسيكي والمونوغرام المعكوس، مزودة بسحاب مزدوج مع قفل معدني مذهب ومقبض علوي ملفوف بوشاح حريري وسلسلة ذهبية منسوجة راقية.",
-    "category": "Crossbody Bags",
-    "price": 52,
-    "original_price": 74,
-    "badge": "Staff Pick",
-    "brand": "Louis Vuitton",
-    "image": "/images/collection/lv-vanity-monogram.jpg",
-    "images": [
-      "/images/collection/lv-vanity-monogram.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Monogram & Reverse",
-        "hex": "#63432B",
-        "image": "/images/collection/lv-vanity-monogram.jpg"
-      }
-    ],
-    "stock": 11,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-lv-pochette-reverse",
-    "title": "Louis Vuitton Pochette Métis — Monogram Reverse",
-    "subtitle": "Compact satchel with S-lock & black leather trim",
-    "description": "حقيبة بوشيت ميتس الأكثر طلباً عالمياً بتصميم كانفاس المونوغرام المعكوس المتناسق، تتميز بقفل S-lock الشهير من لويس فيتون ومقبض جلدي أسود أنيق مع حزام كتف عملي قابل للتعديل يتناسب مع كافة الإطلالات.",
-    "category": "Shoulder Bags",
-    "price": 50,
-    "original_price": 70,
-    "badge": "Top Trending",
-    "brand": "Louis Vuitton",
-    "image": "/images/collection/lv-pochette-metis-reverse.jpg",
-    "images": [
-      "/images/collection/lv-pochette-metis-reverse.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Monogram Reverse",
-        "hex": "#79553C",
-        "image": "/images/collection/lv-pochette-metis-reverse.jpg"
-      }
-    ],
-    "stock": 14,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-lv-diane-tourterelle",
-    "title": "Louis Vuitton Diane — Empreinte Tourterelle",
-    "subtitle": "Supple embossed leather with jacquard signature guitar strap",
-    "description": "حقيبة لويس فيتون ديان الكلاسيكية العصرية المصنوعة من جلد المونوغرام أمبرينت الناعم بدرجة التورتوريل الراقية، تأتي مع إبزيم أمامي ذهبي وحزام قماشي عريض (جاكار) منقوش بزهور المونوغرام لإطلالة كاجوال فاخرة ومريحة.",
-    "category": "Shoulder Bags",
-    "price": 48,
-    "original_price": 68,
-    "badge": "Modern Elegance",
-    "brand": "Louis Vuitton",
-    "image": "/images/collection/lv-diane-empreinte-taupe.jpg",
-    "images": [
-      "/images/collection/lv-diane-empreinte-taupe.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Tourterelle",
-        "hex": "#9E8F84",
-        "image": "/images/collection/lv-diane-empreinte-taupe.jpg"
-      }
-    ],
-    "stock": 10,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
-    "id": "prod-coach-rowan-signature",
-    "title": "Coach Rowan Satchel — Signature Khaki Saddle",
-    "subtitle": "Signature coated canvas with tan leather trim & gold logo",
-    "description": "حقيبة كوتش روان ساتشيل الكلاسيكية المميزة بكانفاس كوتش الشهير بدرجات البيج والكاكي، ومقابض جلدية متينة بلون السادل تان مع شعار الحصان والعربة المذهب وتعليقة الجلد الأصلية. الحقيبة اليومية المثالية بأناقة استثنائية.",
-    "category": "Top Handle",
-    "price": 42,
-    "original_price": 60,
-    "badge": "Value Luxury",
-    "brand": "Coach",
-    "image": "/images/collection/coach-rowan-signature.jpg",
-    "images": [
-      "/images/collection/coach-rowan-signature.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Khaki Saddle",
-        "hex": "#C29B68",
-        "image": "/images/collection/coach-rowan-signature.jpg"
-      }
-    ],
-    "stock": 15,
-    "rating": 5,
-    "reviews_count": 0,
-    "featured": true,
-    "is_new_arrival": true,
-    "active": true,
-    "createdAt": "2026-09-22T20:16:49.196Z",
-    "updatedAt": "2026-09-22T20:16:49.196Z"
-  },
-  {
     "createdAt": "2026-09-15T05:36:58.236Z",
     "updatedAt": "2026-09-15T05:36:58.236Z",
     "id": "prod-sh-02",
@@ -261,7 +21,7 @@
         "image": "/images/collection/shoulder-chain-flap-noir.jpg"
       }
     ],
-    "stock": 10,
+    "stock": 9,
     "rating": 5,
     "reviews_count": 0,
     "featured": true,
@@ -752,5 +512,395 @@
     "featured": false,
     "is_new_arrival": false,
     "active": true
+  },
+  {
+    "id": "prod-lv-capucines-scarlet",
+    "active": true,
+    "badge": "Most Exclusive",
+    "brand": "Louis Vuitton",
+    "category": "Top Handle",
+    "colors": [
+      {
+        "name": "Scarlet Red",
+        "hex": "#C41E3A",
+        "image": "/images/collection/lv-capucines-mini-scarlet.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.181Z",
+    "description": "حقيبة لويس فيتون كابوسين ميني الأيقونية المصنوعة من جلد التوريون المحبب الفاخر باللون الأحمر الياقوتي المفعم بالحيوية، مزدانة بقفل LV الأيقوني المكسو بالمينا وإطار ذهبي مصقول، مع ميدالية زهرة المونوغرام المذهبة. قطعة استثنائية لأرقى المناسبات.",
+    "featured": true,
+    "image": "/images/collection/lv-capucines-mini-scarlet.jpg",
+    "images": [
+      "/images/collection/lv-capucines-mini-scarlet.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 85,
+    "price": 60,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 8,
+    "subtitle": "Taurillon leather with tone-on-tone LV & floral charm",
+    "title": "Louis Vuitton Capucines Mini — Scarlet Red",
+    "updatedAt": "2026-09-22T20:16:49.195Z"
+  },
+  {
+    "id": "prod-bv-andiamo-cognac",
+    "active": true,
+    "badge": "Trending Now",
+    "brand": "Bottega Veneta",
+    "category": "Top Handle",
+    "colors": [
+      {
+        "name": "Cognac Brown",
+        "hex": "#9A5328",
+        "image": "/images/collection/bv-andiamo-cognac.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة بوتيغا فينيتا أنديامو الفاخرة المصنوعة من جلد العجل الفاخر بلون الكراميل الدافئ (Cognac)، تتميز بتصميم ناعم مع حزام كتف مجدول انسيابي مزين بعقدة معدنية ذهبية منحوتة. قمة الفخامة الهادئة (Quiet Luxury).",
+    "featured": true,
+    "image": "/images/collection/bv-andiamo-cognac.jpg",
+    "images": [
+      "/images/collection/bv-andiamo-cognac.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 80,
+    "price": 58,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 7,
+    "subtitle": "Smooth calfskin with sculptural gold knot sliding strap",
+    "title": "Bottega Veneta Andiamo — Cognac Calfskin",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-dior-cannage-cream",
+    "active": true,
+    "badge": "Iconic Classic",
+    "brand": "Dior",
+    "category": "Top Handle",
+    "colors": [
+      {
+        "name": "Pearl Cream",
+        "hex": "#F3EFE6",
+        "image": "/images/collection/lady-dior-cannage-cream.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "الأيقونة الخالدة ليدي ديور بجلد الحمل المبطن بتطريز الكاناج الهندسي الملكي باللون الكريمي اللؤلؤي، مع مقبض علوي متباين بلون الإسبريسو وحليات D.I.O.R المذهبة الأسطورية وشريطة جلدية أنيقة. عنوان الأنوثة الملكية.",
+    "featured": true,
+    "image": "/images/collection/lady-dior-cannage-cream.jpg",
+    "images": [
+      "/images/collection/lady-dior-cannage-cream.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 82,
+    "price": 58,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 9,
+    "subtitle": "Quilted lambskin with contrast handle & gold D.I.O.R charms",
+    "title": "Christian Dior Lady Dior Cannage — Pearl Cream",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-lv-onthego-bicolor",
+    "active": true,
+    "badge": "Best Seller",
+    "brand": "Louis Vuitton",
+    "category": "Tote Bags",
+    "colors": [
+      {
+        "name": "Creme Tourterelle",
+        "hex": "#E6D7C8",
+        "image": "/images/collection/lv-onthego-bicolor.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة لويس فيتون أون ذا جو بي إم الأنيقة بنمط المونوغرام العملاق المحفور على جلد الأمبرينت بدرجات الكريمي والتورتوريل (رمادي دافئ)، مع مقبض ملفوف بوشاح حريري تويلي أنيق. تجمع بين الاتساع العملي والفخامة الباريسية.",
+    "featured": true,
+    "image": "/images/collection/lv-onthego-bicolor.jpg",
+    "images": [
+      "/images/collection/lv-onthego-bicolor.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 78,
+    "price": 56,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 12,
+    "subtitle": "Giant Monogram Empreinte leather with silk twilly handle",
+    "title": "Louis Vuitton Onthego PM — Bicolor Creme & Tourterelle",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-lv-vanity-monogram",
+    "active": true,
+    "badge": "Staff Pick",
+    "brand": "Louis Vuitton",
+    "category": "Crossbody Bags",
+    "colors": [
+      {
+        "name": "Monogram & Reverse",
+        "hex": "#63432B",
+        "image": "/images/collection/lv-vanity-monogram.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة لويس فيتون فانيتي بي إم العصرية بتنسيق ثنائي مذهل بين كانفاس المونوغرام الكلاسيكي والمونوغرام المعكوس، مزودة بسحاب مزدوج مع قفل معدني مذهب ومقبض علوي ملفوف بوشاح حريري وسلسلة ذهبية منسوجة راقية.",
+    "featured": true,
+    "image": "/images/collection/lv-vanity-monogram.jpg",
+    "images": [
+      "/images/collection/lv-vanity-monogram.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 74,
+    "price": 52,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 11,
+    "subtitle": "Coated canvas vanity case with silk twilly & gold chain",
+    "title": "Louis Vuitton Vanity PM — Monogram & Reverse",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-lv-pochette-reverse",
+    "active": true,
+    "badge": "Top Trending",
+    "brand": "Louis Vuitton",
+    "category": "Shoulder Bags",
+    "colors": [
+      {
+        "name": "Monogram Reverse",
+        "hex": "#79553C",
+        "image": "/images/collection/lv-pochette-metis-reverse.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة بوشيت ميتس الأكثر طلباً عالمياً بتصميم كانفاس المونوغرام المعكوس المتناسق، تتميز بقفل S-lock الشهير من لويس فيتون ومقبض جلدي أسود أنيق مع حزام كتف عملي قابل للتعديل يتناسب مع كافة الإطلالات.",
+    "featured": true,
+    "image": "/images/collection/lv-pochette-metis-reverse.jpg",
+    "images": [
+      "/images/collection/lv-pochette-metis-reverse.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 70,
+    "price": 50,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 14,
+    "subtitle": "Compact satchel with S-lock & black leather trim",
+    "title": "Louis Vuitton Pochette Métis — Monogram Reverse",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-lv-diane-tourterelle",
+    "active": true,
+    "badge": "Modern Elegance",
+    "brand": "Louis Vuitton",
+    "category": "Shoulder Bags",
+    "colors": [
+      {
+        "name": "Tourterelle",
+        "hex": "#9E8F84",
+        "image": "/images/collection/lv-diane-empreinte-taupe.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة لويس فيتون ديان الكلاسيكية العصرية المصنوعة من جلد المونوغرام أمبرينت الناعم بدرجة التورتوريل الراقية، تأتي مع إبزيم أمامي ذهبي وحزام قماشي عريض (جاكار) منقوش بزهور المونوغرام لإطلالة كاجوال فاخرة ومريحة.",
+    "featured": true,
+    "image": "/images/collection/lv-diane-empreinte-taupe.jpg",
+    "images": [
+      "/images/collection/lv-diane-empreinte-taupe.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 68,
+    "price": 48,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 10,
+    "subtitle": "Supple embossed leather with jacquard signature guitar strap",
+    "title": "Louis Vuitton Diane — Empreinte Tourterelle",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-coach-rowan-signature",
+    "active": true,
+    "badge": "Value Luxury",
+    "brand": "Coach",
+    "category": "Top Handle",
+    "colors": [
+      {
+        "name": "Khaki Saddle",
+        "hex": "#C29B68",
+        "image": "/images/collection/coach-rowan-signature.jpg"
+      }
+    ],
+    "createdAt": "2026-09-22T20:16:49.196Z",
+    "description": "حقيبة كوتش روان ساتشيل الكلاسيكية المميزة بكانفاس كوتش الشهير بدرجات البيج والكاكي، ومقابض جلدية متينة بلون السادل تان مع شعار الحصان والعربة المذهب وتعليقة الجلد الأصلية. الحقيبة اليومية المثالية بأناقة استثنائية.",
+    "featured": true,
+    "image": "/images/collection/coach-rowan-signature.jpg",
+    "images": [
+      "/images/collection/coach-rowan-signature.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 60,
+    "price": 42,
+    "rating": 5,
+    "reviews_count": 0,
+    "stock": 15,
+    "subtitle": "Signature coated canvas with tan leather trim & gold logo",
+    "title": "Coach Rowan Satchel — Signature Khaki Saddle",
+    "updatedAt": "2026-09-22T20:16:49.196Z"
+  },
+  {
+    "id": "prod-ac-hermes-h-belt",
+    "active": true,
+    "badge": "Iconic Luxury",
+    "brand": "Hermès",
+    "category": "Accessories",
+    "colors": [
+      {
+        "name": "Noir & Gold",
+        "hex": "#1a1918",
+        "image": "/images/collection/hermes-h-reversible-belt.jpg"
+      },
+      {
+        "name": "Cognac Tan",
+        "hex": "#b46e38",
+        "image": "/images/collection/hermes-h-reversible-belt.jpg"
+      }
+    ],
+    "created_at": "2026-09-22T21:28:34.029Z",
+    "description": "حزام هيرمس الأيقوني المصنوع يدوياً من جلد إبسوم (Epsom) الفاخر ذو الوجهين (أسود ملكي وكونياك ذهبي)، مزين بإبزيم معدني مطلي بالذهب عيار 24 قيراط على شكل حرف H الأسطوري مع خياطة سادل ستيتش الفرنسية الشهيرة.",
+    "featured": true,
+    "image": "/images/collection/hermes-h-reversible-belt.jpg",
+    "images": [
+      "/images/collection/hermes-h-reversible-belt.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 85,
+    "price": 58,
+    "rating": 5,
+    "reviews_count": 38,
+    "stock": 12,
+    "subtitle": "حزام هيرمس كونستانس بوجهين مع إبزيم H الذهبي الملكي",
+    "title": "Hermès Constance H Reversible Belt — Noir & Gold"
+  },
+  {
+    "id": "prod-ac-lv-initiales-belt",
+    "active": true,
+    "badge": "Best Seller",
+    "brand": "Louis Vuitton",
+    "category": "Accessories",
+    "colors": [
+      {
+        "name": "Monogram Classic",
+        "hex": "#4a3525",
+        "image": "/images/collection/lv-initiales-monogram-belt.jpg"
+      }
+    ],
+    "created_at": "2026-09-22T21:28:34.040Z",
+    "description": "حزام لويس فيتون الكلاسيكي المصنوع من كانفاس مونوغرام الأصلي والجلد الطبيعي، مزين بإبزيم شعار LV المعدني الذهبي اللامع بحرفية لا تضاهى، قطعة أساسية تمنح إطلالتك فخامة استثنائية.",
+    "featured": true,
+    "image": "/images/collection/lv-initiales-monogram-belt.jpg",
+    "images": [
+      "/images/collection/lv-initiales-monogram-belt.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 78,
+    "price": 54,
+    "rating": 4.9,
+    "reviews_count": 42,
+    "stock": 15,
+    "subtitle": "حزام لويس فيتون إنيشيالز بكانفاس المونوغرام وإبزيم LV الذهبي",
+    "title": "Louis Vuitton LV Initiales Monogram Belt — Gold Buckle"
+  },
+  {
+    "id": "prod-ac-dior-cd-belt",
+    "active": true,
+    "badge": "New Arrival",
+    "brand": "Dior",
+    "category": "Accessories",
+    "colors": [
+      {
+        "name": "Noir Black",
+        "hex": "#111111",
+        "image": "/images/collection/dior-cd-icon-belt.jpg"
+      }
+    ],
+    "created_at": "2026-09-22T21:28:34.040Z",
+    "description": "حزام كريستيان ديور الفاخر مصنوع من أفخر أنواع جلد العجل الطبيعي الأملس فائق النعومة، يتميز بإبزيم CD الأيقوني المطلي بذهب عيار عالي بلمسة مصقولة راقية تبرز أناقة الخصر في الإطلالات اليومية والرسمية.",
+    "featured": false,
+    "image": "/images/collection/dior-cd-icon-belt.jpg",
+    "images": [
+      "/images/collection/dior-cd-icon-belt.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 75,
+    "price": 52,
+    "rating": 4.9,
+    "reviews_count": 27,
+    "stock": 14,
+    "subtitle": "حزام ديور بجلد العجل الأملس وإبزيم CD المطلي بالذهب",
+    "title": "Christian Dior CD Icon Smooth Leather Belt — Black"
+  },
+  {
+    "id": "prod-ac-hermes-oran-slides",
+    "active": true,
+    "badge": "Must Have",
+    "brand": "Hermès",
+    "category": "Accessories",
+    "colors": [
+      {
+        "name": "Gold / Cognac Tan",
+        "hex": "#be7b40",
+        "image": "/images/collection/hermes-oran-gold-slides.jpg"
+      }
+    ],
+    "created_at": "2026-09-22T21:28:34.040Z",
+    "description": "سليبرز هيرمس أوران الأكثر شهرة وطلباً في العالم، مصنوعة يدوياً من جلد إبسوم الفاخر بلون الغولد (Gold/Cognac) مع قصة حرف H الأيقونية، وخياطة بيضاء بارزة ونعل جلدي مريح يوفر أعلى درجات الرفاهية والأناقة الصيفية.",
+    "featured": true,
+    "image": "/images/collection/hermes-oran-gold-slides.jpg",
+    "images": [
+      "/images/collection/hermes-oran-gold-slides.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 88,
+    "price": 58,
+    "rating": 5,
+    "reviews_count": 51,
+    "stock": 10,
+    "subtitle": "سليبرز هيرمس أوران الكلاسيكية بجلد إبسوم الذهبي وقصة H",
+    "title": "Hermès Oran Flat Leather Slides — Gold Epsom"
+  },
+  {
+    "id": "prod-ac-dior-dway-slides",
+    "active": true,
+    "badge": "Top Trending",
+    "brand": "Dior",
+    "category": "Accessories",
+    "colors": [
+      {
+        "name": "Navy Blue & Ecru",
+        "hex": "#1c2840",
+        "image": "/images/collection/dior-dway-mule-slides.jpg"
+      }
+    ],
+    "created_at": "2026-09-22T21:28:34.040Z",
+    "description": "سليبرز ديور ديواي الأيقونية بتطريز قطني بارز يحمل توقيع 'CHRISTIAN DIOR PARIS' باللون الكحلي والبيج العاجي، مع نعل داخلي من الجلد الطبيعي الموسوم بالنجمة الذهبية، خفيفة ومريحة وأنيقة لأبعد الحدود.",
+    "featured": true,
+    "image": "/images/collection/dior-dway-mule-slides.jpg",
+    "images": [
+      "/images/collection/dior-dway-mule-slides.jpg"
+    ],
+    "is_new_arrival": true,
+    "original_price": 82,
+    "price": 56,
+    "rating": 4.8,
+    "reviews_count": 34,
+    "stock": 11,
+    "subtitle": "سليبرز ديور ديواي بتطريز كريستيان ديور باريس الفاخر",
+    "title": "Christian Dior Dway Embroidered Slide Mules — Blue & Ecru"
   }
 ]
