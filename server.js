@@ -220,6 +220,7 @@ const PUBLIC_API = [
   ['GET', /^\/promo-cards$/],
   ['GET', /^\/reviews$/],
   ['GET', /^\/settings$/],
+  ['GET', /^\/db-status$/],
   ['POST', /^\/orders$/],
   ['POST', /^\/reviews$/],
   ['POST', /^\/coupons\/validate$/]
