@@ -12,7 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23141414'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -407,75 +407,37 @@
     </div>
   </div>
 
-  <!-- What sets us apart: service promises (Arabic content, so the section runs right-to-left) -->
-  <section class="quality-standards-section" dir="rtl">
+  <!-- What sets us apart: centred services strip with line icons (English, like a maison "Services" row) -->
+  <section class="promise-section" aria-labelledby="promise-heading">
     <div class="container">
-      <div class="section-header text-center" style="margin-bottom: 36px;">
-        <span class="section-tag-gold">وعدنا لك • OUR PROMISE</span>
-        <h2 class="section-title font-serif">ما يميّزنا</h2>
-        <p class="section-subtitle">خدمات تجعل تجربة الشراء سهلة ومضمونة، من لحظة الطلب حتى وصول القطعة إلى باب بيتك.</p>
-        <div class="section-divider-ornate">
-          <span class="ornate-line"></span>
-          <span class="ornate-icon">◆</span>
-          <span class="ornate-line"></span>
-        </div>
+      <div class="promise-intro">
+        <span class="section-tag-gold">WHAT SETS US APART</span>
+        <h2 class="promise-heading" id="promise-heading">The Omar Luxury Promise</h2>
+        <p class="promise-lede">Every detail, from your order to your door.</p>
       </div>
 
-      <div class="standards-grid">
-        <div class="standard-card">
-          <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-          <div class="standard-content">
-            <h3 class="standard-title">المعاينة قبل الدفع</h3>
-            <p class="standard-desc">من حقّك فتح الطرد وفحص القطعة وخامتها مع المندوب، والدفع فقط بعد رضاك التام.</p>
-          </div>
-        </div>
-
-        <div class="standard-card">
-          <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>
-          </div>
-          <div class="standard-content">
-            <h3 class="standard-title">التوصيل خلال 3–7 أيام</h3>
-            <p class="standard-desc">إلى باب بيتك في عمّان وجميع محافظات المملكة، والتوصيل مجاني للطلبات فوق <span class="js-free-threshold">50</span> د.أ.</p>
-          </div>
-        </div>
-
-        <div class="standard-card">
-          <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </div>
-          <div class="standard-content">
-            <h3 class="standard-title">جودة ماستر كواليتي 1:1</h3>
-            <p class="standard-desc">أفخر خامات الجلد الطبيعي، وإكسسوارات معدنية متينة مختومة ومطلية لا يتغير لونها، وتشطيب إيطالي فائق الدقة.</p>
-          </div>
-        </div>
-
-        <div class="standard-card">
-          <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-              <circle cx="12" cy="12" r="2.5"></circle>
-              <path d="M6 12h.01M18 12h.01"></path>
-            </svg>
-          </div>
-          <div class="standard-content">
-            <h3 class="standard-title">الدفع عند الاستلام</h3>
-            <p class="standard-desc">الدفع نقداً بعد المعاينة، مع خدمة استبدال سهلة وسريعة عند الحاجة.</p>
-          </div>
-        </div>
-      </div>
+      <ul class="promise-list">
+        <li class="promise-item">
+          <svg class="promise-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="12"/><path d="M30 30l10 10"/><path d="M15.5 21.5l3.5 3.5 7-7.5"/></svg>
+          <h3 class="promise-title">Inspect Before You Pay</h3>
+          <p class="promise-desc">Open your order and examine every detail in the courier&rsquo;s presence. Pay only once you are fully satisfied.</p>
+        </li>
+        <li class="promise-item">
+          <svg class="promise-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l17 8.5v21L24 43 7 34.5v-21z"/><path d="M7 13.5L24 22l17-8.5"/><path d="M24 22v21"/><path d="M15.5 9.25l17 8.5"/></svg>
+          <h3 class="promise-title">Delivery in 3&ndash;7 Days</h3>
+          <p class="promise-desc">Insured doorstep delivery across all governorates of Jordan, complimentary on orders over <span class="js-free-threshold">50</span>&nbsp;JOD.</p>
+        </li>
+        <li class="promise-item promise-item--ar" dir="rtl" lang="ar">
+          <svg class="promise-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 7h20l8 10-18 24L6 17z"/><path d="M6 17h36"/><path d="M19 7l-4 10 9 24 9-24-4-10"/></svg>
+          <h3 class="promise-title">جودة ماستر كواليتي 1:1</h3>
+          <p class="promise-desc">أفخر خامات الجلد الطبيعي، وإكسسوارات معدنية متينة مختومة ومطلية لا يتغير لونها، وتشطيب إيطالي فائق الدقة.</p>
+        </li>
+        <li class="promise-item">
+          <svg class="promise-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="13" width="38" height="22" rx="1.5"/><circle cx="24" cy="24" r="5"/><path d="M11 19v10M37 19v10"/></svg>
+          <h3 class="promise-title">Cash on Delivery</h3>
+          <p class="promise-desc">Pay in cash when your order arrives, with easy and swift exchanges whenever you need them.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -483,14 +445,9 @@
   <section class="new-arrivals-section" id="new-arrivals">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-tag-gold">إصدارات جديدة • NEW ARRIVALS</span>
-        <h2 class="section-title font-serif">أحدث الحقائب الحصرية</h2>
-        <p class="section-subtitle">قطع استثنائية مختارة بعناية تعكس أرقى صيحات الأناقة العالمية</p>
-        <div class="section-divider-ornate">
-          <span class="ornate-line"></span>
-          <span class="ornate-icon">◆</span>
-          <span class="ornate-line"></span>
-        </div>
+        <span class="section-tag-gold">NEW ARRIVALS</span>
+        <h2 class="section-title font-serif">وصل حديثاً</h2>
+        <p class="section-subtitle">قطع مختارة من أحدث التشكيلات.</p>
       </div>
 
       <!-- 4 Products Side By Side with interactive color swatches -->
@@ -503,6 +460,10 @@
   <!-- 6 Category Promo Cards Section (Exact Photo Layout) -->
   <section class="promo-grid-section">
     <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-gold">SHOP BY CATEGORY</span>
+        <h2 class="section-title font-serif">تسوّق حسب القسم</h2>
+      </div>
       <div class="promo-grid-6" id="promo-cards-grid">
         <!-- Injected dynamically from /api/promo-cards -->
       </div>
@@ -513,14 +474,9 @@
   <section class="new-arrivals-section" id="shop" style="background-color: var(--color-bg-soft); padding: 80px 0;">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-tag-gold">كل التشكيلة • COMPLETE CATALOG</span>
-        <h2 class="section-title font-serif">المجموعة الكاملة</h2>
-        <p class="section-subtitle">حقائب يد، كتف، وكروس بودي مصممة لتدوم وتمنحك إطلالة ملكية في كل مناسبة</p>
-        <div class="section-divider-ornate">
-          <span class="ornate-line"></span>
-          <span class="ornate-icon">◆</span>
-          <span class="ornate-line"></span>
-        </div>
+        <span class="section-tag-gold">THE COLLECTION</span>
+        <h2 class="section-title font-serif">التشكيلة الكاملة</h2>
+        <p class="section-subtitle">حقائب وإكسسوارات مختارة بعناية لكل مناسبة.</p>
       </div>
 
       <!-- Category Filter Tabs -->
@@ -546,14 +502,9 @@
   <section class="reviews-section" id="reviews">
     <div class="container">
       <div class="section-header text-center" style="margin-bottom: 36px;">
-        <span class="section-tag-gold">آراء العملاء • CLIENT REVIEWS</span>
-        <h2 class="section-title font-serif">ماذا يقول عملاؤنا عن OMAR LUXURY</h2>
+        <span class="section-tag-gold">CLIENT REVIEWS</span>
+        <h2 class="section-title font-serif">آراء عملائنا</h2>
         <p class="section-subtitle">شاركنا تجربتك بعد استلام طلبك، فرأيك يهمّنا.</p>
-        <div class="section-divider-ornate">
-          <span class="ornate-line"></span>
-          <span class="ornate-icon">◆</span>
-          <span class="ornate-line"></span>
-        </div>
       </div>
 
       <div class="reviews-grid" id="reviews-grid">
