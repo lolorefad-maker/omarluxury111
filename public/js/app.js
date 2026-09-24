@@ -84,13 +84,15 @@ function updateCartUI() {
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 0 1-8 0"></path>
         </svg>
-        <p style="font-size: 15px; font-weight: 500; margin-bottom: 6px;">Your bag is currently empty</p>
-        <p style="font-size: 12.5px;">Explore our luxury collection and find your timeless piece.</p>
+        <p style="font-size: 15px; font-weight: 600; margin-bottom: 6px;">حقيبة التسوق فارغة</p>
+        <p style="font-size: 12.5px;">تصفّح التشكيلة واختر القطعة التي تناسبك.</p>
       </div>
     `;
     if (cartSubtotalEl) cartSubtotalEl.textContent = formatPrice(0);
     if (cartTotalEl) cartTotalEl.textContent = formatPrice(0);
     if (cartShippingEl) cartShippingEl.textContent = formatPrice(0);
+    if (freeShipBar) freeShipBar.style.width = '0%';
+    if (freeShipMsg) freeShipMsg.innerHTML = `الشحن مجاني للطلبات فوق <strong>${formatPrice(State.settings.free_shipping_threshold || 100)}</strong>`;
     return;
   }
 
@@ -99,7 +101,7 @@ function updateCartUI() {
       <img src="${item.image}" alt="${item.title}" class="cart-item-img">
       <div class="cart-item-details">
         <h4 class="cart-item-title">${item.title}</h4>
-        <div class="cart-item-color">Color: <strong>${item.color || 'Default'}</strong></div>
+        <div class="cart-item-color">اللون: <strong>${item.color || 'الأساسي'}</strong></div>
         <div class="cart-item-bottom">
           <div class="qty-controls">
             <button class="qty-btn" onclick="changeCartQty(${index}, -1)">-</button>
@@ -107,7 +109,7 @@ function updateCartUI() {
             <button class="qty-btn" onclick="changeCartQty(${index}, 1)">+</button>
           </div>
           <span style="font-weight: 600; font-size: 14px;">${formatPrice(item.price * item.quantity)}</span>
-          <button onclick="removeCartItem(${index})" style="color:#b33; font-size:16px; margin-left:10px;" title="Remove">✕</button>
+          <button onclick="removeCartItem(${index})" style="color:#b33; font-size:16px; margin-inline-start:10px;" title="إزالة" aria-label="إزالة">✕</button>
         </div>
       </div>
     </div>
@@ -127,7 +129,7 @@ function updateCartUI() {
 
   if (cartSubtotalEl) cartSubtotalEl.textContent = formatPrice(subtotal);
   if (cartDiscountEl) cartDiscountEl.textContent = `-${formatPrice(discount)}`;
-  if (cartShippingEl) cartShippingEl.textContent = (shippingFee === 0) ? 'Free Shipping' : formatPrice(shippingFee);
+  if (cartShippingEl) cartShippingEl.textContent = (shippingFee === 0) ? 'مجاني' : formatPrice(shippingFee);
   if (cartTotalEl) cartTotalEl.textContent = formatPrice(total);
 
   // Free shipping progress
@@ -135,11 +137,11 @@ function updateCartUI() {
     const percent = Math.min(100, Math.round((subtotal / freeLimit) * 100));
     freeShipBar.style.width = `${percent}%`;
     if (subtotal >= freeLimit) {
-      freeShipMsg.innerHTML = `🎉 Congratulations! You unlocked <strong>Free Standard Shipping</strong>!`;
+      freeShipMsg.innerHTML = `🎉 طلبك مؤهل <strong>للشحن المجاني</strong>`;
       freeShipBar.style.backgroundColor = 'var(--color-success)';
     } else {
       const needed = freeLimit - subtotal;
-      freeShipMsg.innerHTML = `Add <strong>${formatPrice(needed)}</strong> more to enjoy <strong>Free Shipping</strong>!`;
+      freeShipMsg.innerHTML = `أضف منتجات بقيمة <strong>${formatPrice(needed)}</strong> لتحصل على <strong>شحن مجاني</strong>`;
       freeShipBar.style.backgroundColor = 'var(--color-dark)';
     }
   }
@@ -165,7 +167,7 @@ function addToCart(product, colorObj = null, qty = 1) {
   }
 
   saveCart();
-  showToast(`Added "${product.title}" to your bag!`);
+  showToast(`تمت إضافة "${product.title}" إلى السلة`);
   openCartDrawer();
 }
 
@@ -241,6 +243,24 @@ function applySettings() {
   if (announcement && State.settings.announcement) {
     announcement.textContent = State.settings.announcement;
   }
+  // Keep the free-shipping amount in the "what sets us apart" section in sync with the store settings
+  if (State.settings.free_shipping_threshold) {
+    document.querySelectorAll('.js-free-threshold').forEach(el => { el.textContent = State.settings.free_shipping_threshold; });
+  }
+  // Footer contact links come from the store settings; hide any that aren't set
+  const waDigits = (State.settings.whatsapp_number || '').replace(/[^0-9]/g, '');
+  const contacts = {
+    '.js-contact-whatsapp': waDigits ? `https://wa.me/${waDigits}` : '',
+    '.js-contact-instagram': State.settings.instagram_url || '',
+    '.js-contact-email': State.settings.contact_email ? `mailto:${State.settings.contact_email}` : ''
+  };
+  Object.entries(contacts).forEach(([sel, href]) => {
+    document.querySelectorAll(sel).forEach(li => {
+      li.hidden = !href;
+      const a = li.querySelector('a');
+      if (a && href) a.href = href;
+    });
+  });
 }
 
 // Render Hero Banner
@@ -314,6 +334,21 @@ function matchesCategory(p, cat) {
   return c.includes(target);
 }
 
+// Arabic display names for categories and badges (the stored values stay in English)
+function categoryLabel(category) {
+  const c = (category || '').toLowerCase();
+  const hit = SHOP_CATEGORIES.find(sc => c.includes(sc.key));
+  return hit ? hit.label.split(' • ')[0] : (category || 'حقائب فاخرة');
+}
+
+const BADGE_LABELS = {
+  'new': 'جديد', 'best seller': 'الأكثر مبيعاً', 'popular': 'رائج', 'sale': 'تخفيض', 'limited': 'إصدار محدود',
+  'most exclusive': 'حصري', 'trending now': 'رائج الآن', 'top trending': 'الأكثر رواجاً', 'modern elegance': 'أناقة عصرية'
+};
+function badgeLabel(badge) {
+  return BADGE_LABELS[(badge || '').toLowerCase().trim()] || badge;
+}
+
 // Render Full Catalog Grid
 function renderCatalog() {
   const grid = document.getElementById('catalog-grid');
@@ -325,7 +360,7 @@ function renderCatalog() {
   renderActiveFilter(grid);
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">No products found in this category.</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">لا توجد منتجات في هذا القسم حالياً.</div>`;
     return;
   }
 
@@ -351,7 +386,7 @@ function createProductCardHTML(prod) {
   return `
     <div class="product-card" id="card-${prod.id}">
       <div class="product-image-box" onclick="openQuickView('${prod.id}')">
-        ${prod.badge ? `<span class="product-badge ${prod.badge.toLowerCase() === 'sale' ? 'sale' : ''}">${prod.badge}</span>` : ''}
+        ${prod.badge ? `<span class="product-badge ${prod.badge.toLowerCase() === 'sale' ? 'sale' : ''}">${badgeLabel(prod.badge)}</span>` : ''}
         <img src="${prod.image}" alt="${prod.title}" class="product-image" id="img-${prod.id}" loading="lazy">
         
         <div class="quick-actions">
@@ -372,7 +407,7 @@ function createProductCardHTML(prod) {
       </div>
       
       <div class="product-info">
-        <div class="product-cat-tag">${prod.category || 'Luxury Handbag'}</div>
+        <div class="product-cat-tag">${categoryLabel(prod.category)}</div>
         <h3 class="product-title font-serif" onclick="openQuickView('${prod.id}')">${prod.title}</h3>
         ${prod.subtitle ? `<p class="product-subtitle">${prod.subtitle}</p>` : ''}
         
@@ -436,7 +471,7 @@ function renderPromoCards() {
   container.innerHTML = State.promoCards.map(card => `
     <div class="promo-card" onclick="filterByPromo('${card.category}')">
       <div class="promo-card-content">
-        <div class="promo-cat-name">${card.category}</div>
+        <div class="promo-cat-name">${categoryLabel(card.category)}</div>
         <h3 class="promo-badge-text font-serif">${card.badge}</h3>
         <a href="${card.button_link || '#shop'}" class="promo-btn">${card.button_text || 'Shop Now'}</a>
       </div>
@@ -609,13 +644,13 @@ window.openQuickView = function (prodId) {
       
       <div class="quick-view-info">
         <div class="quick-header-block">
-          <div class="quick-cat-badge">${prod.category || 'Luxury Handbag'}</div>
+          <div class="quick-cat-badge">${categoryLabel(prod.category)}</div>
           <h2 class="quick-prod-title font-serif">${prod.title}</h2>
           
           <div class="quick-price-row">
             <span class="quick-price-val">${formatPrice(prod.price)}</span>
             ${prod.original_price ? `<span class="quick-price-orig">${formatPrice(prod.original_price)}</span>` : ''}
-            <span class="stock-pill">✓ متوفر جاهز للشحن</span>
+            <span class="stock-pill">✓ متوفر • التوصيل خلال 3–7 أيام</span>
           </div>
         </div>
 
@@ -710,13 +745,13 @@ function renderReviews() {
     return `
     <div class="review-card">
       <div class="review-stars">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</div>
-      <p class="review-comment">"${esc(r.comment)}"</p>
+      <p class="review-comment" dir="auto">"${esc(r.comment)}"</p>
       <div class="review-meta">
         <div>
           <div class="review-author">${esc(r.author_name)}</div>
-          <div style="font-size:11px; color:var(--color-text-light);">${esc(r.product_name || 'Verified Customer')}</div>
+          <div style="font-size:11px; color:var(--color-text-light);">${esc(r.product_name || 'عميل')}</div>
         </div>
-        ${r.verified ? `<div class="review-verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified</div>` : ''}
+        ${r.verified ? `<div class="review-verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> موثّق</div>` : ''}
       </div>
     </div>
   `;
@@ -732,7 +767,7 @@ window.submitReview = async function (e) {
   const prodName = document.getElementById('rev-product').value.trim();
 
   if (!name || !comment) {
-    alert('Please fill out your name and review');
+    alert('الرجاء كتابة اسمك وتقييمك');
     return;
   }
 
@@ -749,7 +784,7 @@ window.submitReview = async function (e) {
     });
     const data = await res.json();
     if (data.success) {
-      showToast('Thank you! Your review was submitted.');
+      showToast('شكراً لك! سيظهر تقييمك بعد مراجعته.', '⭐');
       closeModal('write-review-modal');
       e.target.reset();
       // Reload reviews
@@ -758,14 +793,14 @@ window.submitReview = async function (e) {
       renderReviews();
     }
   } catch (err) {
-    alert('Failed to submit review. Please try again.');
+    alert('تعذّر إرسال التقييم، حاول مرة أخرى.');
   }
 };
 
 // Checkout & Orders
 window.openCheckoutModal = function () {
   if (State.cart.length === 0) {
-    alert('Your shopping bag is empty.');
+    alert('حقيبة التسوق فارغة.');
     return;
   }
   closeCartDrawer();
@@ -777,7 +812,7 @@ window.submitCheckout = async function (e) {
   e.preventDefault();
   const btn = document.getElementById('place-order-btn');
   btn.disabled = true;
-  btn.textContent = 'Processing Order...';
+  btn.textContent = 'جارٍ إرسال الطلب...';
 
   const customer_name = document.getElementById('order-name').value.trim();
   const customer_phone = document.getElementById('order-phone').value.trim();
@@ -815,13 +850,13 @@ window.submitCheckout = async function (e) {
       // Open Success Confirmation Modal
       showOrderSuccess(order);
     } else {
-      alert(data.message || 'Error processing order');
+      alert(data.message || 'تعذّر إتمام الطلب، حاول مرة أخرى.');
     }
   } catch (err) {
-    alert('Network error. Please check your connection.');
+    alert('مشكلة في الاتصال، تحقّق من الإنترنت وحاول مرة أخرى.');
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Complete Order';
+    btn.textContent = 'تأكيد الطلب';
   }
 };
 
@@ -830,46 +865,49 @@ function showOrderSuccess(order) {
   const body = document.getElementById('order-success-body');
   if (!modal || !body) return;
 
-  const waNum = (State.settings.whatsapp_number || '+972599000000').replace(/[^0-9+]/g, '');
+  // wa.me needs the number as digits only (no "+", spaces or dashes)
+  const waNum = (State.settings.whatsapp_number || '').replace(/[^0-9]/g, '');
   const waMsg = encodeURIComponent(
-    `Hello Omar Luxury! I just placed order #${order.order_number} for ${formatPrice(order.total)}. My name is ${order.customer_name}. Please confirm my order.`
+    `مرحباً OMAR LUXURY، قمت بالطلب رقم ${order.order_number} بقيمة ${formatPrice(order.total)}. الاسم: ${order.customer_name}. أرجو تأكيد الطلب.`
   );
   const waUrl = `https://wa.me/${waNum}?text=${waMsg}`;
+  const paymentLabel = { 'Cash on Delivery': 'الدفع عند الاستلام', 'WhatsApp Order': 'الطلب عبر واتساب' }[order.payment_method] || order.payment_method;
 
   body.innerHTML = `
-    <div style="text-align:center; padding: 10px 0;">
+    <div dir="rtl" style="text-align:center; padding: 10px 0;">
       <div style="width:64px; height:64px; background:#e8f5e9; color:#2e7d32; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px;">✓</div>
-      <h2 class="font-serif" style="font-size:28px; margin-bottom:8px;">Thank You For Your Order!</h2>
+      <h2 class="font-serif" style="font-size:26px; margin-bottom:8px;">شكراً لك، تم استلام طلبك!</h2>
       <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:20px;">
-        Order reference: <strong style="color:var(--color-dark);">${order.order_number}</strong>
+        رقم الطلب: <strong style="color:var(--color-dark);">${esc(order.order_number)}</strong>
       </p>
-      
-      <div style="background:var(--color-bg-soft); border-radius:6px; padding:18px; text-align:left; font-size:13px; margin-bottom:24px;">
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:var(--color-text-muted);">Customer:</span>
-          <strong>${order.customer_name} (${order.customer_phone})</strong>
+
+      <div style="background:var(--color-bg-soft); border-radius:8px; padding:18px; text-align:start; font-size:13px; margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; gap:12px; margin-bottom:8px;">
+          <span style="color:var(--color-text-muted);">الاسم:</span>
+          <strong>${esc(order.customer_name)} (<span dir="ltr">${esc(order.customer_phone)}</span>)</strong>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:var(--color-text-muted);">Delivery to:</span>
-          <strong>${order.customer_city} - ${order.customer_address}</strong>
+        <div style="display:flex; justify-content:space-between; gap:12px; margin-bottom:8px;">
+          <span style="color:var(--color-text-muted);">التوصيل إلى:</span>
+          <strong>${esc(order.customer_city)} - ${esc(order.customer_address)}</strong>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:var(--color-text-muted);">Payment:</span>
-          <strong>${order.payment_method}</strong>
+        <div style="display:flex; justify-content:space-between; gap:12px; margin-bottom:8px;">
+          <span style="color:var(--color-text-muted);">طريقة الدفع:</span>
+          <strong>${esc(paymentLabel)}</strong>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px dashed var(--color-border); font-size:15px; font-weight:700;">
-          <span>Total Amount:</span>
+        <div style="display:flex; justify-content:space-between; gap:12px; padding-top:8px; border-top:1px dashed var(--color-border); font-size:15px; font-weight:700;">
+          <span>الإجمالي:</span>
           <span>${formatPrice(order.total)}</span>
         </div>
       </div>
+      <p style="font-size:12.5px; color:var(--color-text-muted); margin-bottom:18px;">التوصيل خلال 3–7 أيام • الدفع عند الاستلام بعد المعاينة</p>
 
       <div style="display:flex; flex-direction:column; gap:12px;">
-        <a href="${waUrl}" target="_blank" class="btn-luxury" style="background:#25d366; color:#fff; border-color:#25d366;">
+        <a href="${waUrl}" target="_blank" rel="noopener" class="btn-luxury" style="background:#25d366; color:#fff; border-color:#25d366;${waNum ? '' : ' display:none;'}">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.274.072.375-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
-          Confirm Order via WhatsApp
+          تأكيد الطلب عبر واتساب
         </a>
         <button onclick="closeModal('order-success-modal')" style="font-size:13px; color:var(--color-text-muted); padding:8px;">
-          Continue Browsing Store
+          متابعة التسوق
         </button>
       </div>
     </div>
@@ -890,7 +928,7 @@ window.handleSearch = function (e) {
   const grid = document.getElementById('catalog-grid');
   if (!grid) return;
   if (filtered.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">No luxury bags matched "${query}".</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">لا توجد نتائج مطابقة لـ "${esc(query)}".</div>`;
     return;
   }
   grid.innerHTML = filtered.map(prod => createProductCardHTML(prod)).join('');

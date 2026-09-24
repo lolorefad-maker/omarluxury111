@@ -7,6 +7,8 @@
   <title>OMAR LUXURY | Timeless Luxury & Handcrafted Elegance</title>
   <meta name="description" content="Discover handcrafted luxury leather bags and accessories. Timeless elegance, premium Italian leather, and world-class craftsmanship.">
   <link rel="stylesheet" href="/css/style.css">
+  <!-- Maison theme layer (visual only). Remove this line to return to the previous look. -->
+  <link rel="stylesheet" href="/css/luxe.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23141414'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,13 +30,6 @@
           <option value="AED">AED</option>
           <option value="SAR">SAR</option>
         </select>
-        <span style="color:#d8d0c5;">|</span>
-        <a href="#signin" onclick="alert('Welcome! You can place orders directly as guest with instant WhatsApp tracking.')">Sign in</a>
-        <a href="#create" onclick="alert('Create account feature is active.')">Create account</a>
-        <a href="javascript:void(0)" onclick="openCartDrawer()" style="font-weight: 600; display:flex; align-items:center; gap:4px;">
-          <span>My Cart</span>
-          <span class="cart-count">0</span>
-        </a>
       </div>
     </div>
   </div>
@@ -74,16 +69,14 @@
       </a>
 
       <!-- Navigation Menu -->
-      <nav class="desktop-nav">
+      <nav class="desktop-nav" dir="rtl">
         <ul class="nav-menu">
-          <li><a href="#" class="nav-link active">Home</a></li>
-          <li><a href="#shop" class="nav-link">Shop</a></li>
-          <li><a href="javascript:void(0)" onclick="filterCategory('tote')" class="nav-link">Tote Bags</a></li>
-          <li><a href="javascript:void(0)" onclick="filterCategory('shoulder')" class="nav-link">Shoulder Bags</a></li>
-          <li><a href="javascript:void(0)" onclick="filterCategory('crossbody')" class="nav-link">Crossbody Bags</a></li>
-          <li><a href="javascript:void(0)" onclick="filterCategory('clutch')" class="nav-link">Clutches</a></li>
-          <li><a href="javascript:void(0)" onclick="filterCategory('accessories')" class="nav-link">Accessories</a></li>
-          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('top handle')" class="nav-link">حقائب بمقبض</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('tote')" class="nav-link">حقائب توت</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('shoulder')" class="nav-link">حقائب كتف</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('crossbody')" class="nav-link">كروس بودي</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('clutch')" class="nav-link">كلاتش</a></li>
+          <li><a href="javascript:void(0)" onclick="shopBy('accessories')" class="nav-link">إكسسوارات</a></li>
         </ul>
       </nav>
 
@@ -94,7 +87,7 @@
           <input 
             type="text" 
             id="live-search-input" 
-            placeholder="Search bags..." 
+            placeholder="ابحث عن حقيبة أو براند..."
             style="border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 7px 14px 7px 34px; font-size: 12.5px; width: 170px; background: var(--color-bg-soft); outline: none; transition: width 0.3s ease;"
             onfocus="this.style.width='230px'"
             onblur="if(!this.value) this.style.width='170px'"
@@ -414,13 +407,13 @@
     </div>
   </div>
 
-  <!-- Quality & Trust Standards Bar (معايير جودتنا) -->
-  <section class="quality-standards-section">
+  <!-- What sets us apart: service promises (Arabic content, so the section runs right-to-left) -->
+  <section class="quality-standards-section" dir="rtl">
     <div class="container">
-      <div class="section-header text-center" style="margin-bottom: 28px;">
-        <span class="section-tag-gold">ثقة وضمان • OMAR LUXURY STANDARDS</span>
-        <h2 class="section-title font-serif">معايير جودتنا التي تميزنا</h2>
-        <p class="section-subtitle">تسوق براحة بال مطلقة مع تجربة شراء استثنائية صُممت لتليق بذوقك الرفيع</p>
+      <div class="section-header text-center" style="margin-bottom: 36px;">
+        <span class="section-tag-gold">وعدنا لك • OUR PROMISE</span>
+        <h2 class="section-title font-serif">ما يميّزنا</h2>
+        <p class="section-subtitle">خدمات تجعل تجربة الشراء سهلة ومضمونة، من لحظة الطلب حتى وصول القطعة إلى باب بيتك.</p>
         <div class="section-divider-ornate">
           <span class="ornate-line"></span>
           <span class="ornate-icon">◆</span>
@@ -431,20 +424,20 @@
       <div class="standards-grid">
         <div class="standard-card">
           <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
           </div>
           <div class="standard-content">
-            <h3 class="standard-title">خدمة المعاينة قبل الدفع</h3>
-            <p class="standard-desc">يحق لك فتح الطرد وفحص الشنطة وجودتها وخامتها مع مندوب التوصيل قبل دفع أي مبلغ، لنضمن رضاك التام.</p>
+            <h3 class="standard-title">المعاينة قبل الدفع</h3>
+            <p class="standard-desc">من حقّك فتح الطرد وفحص القطعة وخامتها مع المندوب، والدفع فقط بعد رضاك التام.</p>
           </div>
         </div>
 
         <div class="standard-card">
           <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <rect x="1" y="3" width="15" height="13"></rect>
               <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
               <circle cx="5.5" cy="18.5" r="2.5"></circle>
@@ -452,14 +445,14 @@
             </svg>
           </div>
           <div class="standard-content">
-            <h3 class="standard-title">توصيل سريع ومجاني</h3>
-            <p class="standard-desc">توصيل مؤمن وسريع إلى باب بيتك في عمّان وجميع محافظات المملكة، مع شحن مجاني للطلبات المؤهلة.</p>
+            <h3 class="standard-title">التوصيل خلال 3–7 أيام</h3>
+            <p class="standard-desc">إلى باب بيتك في عمّان وجميع محافظات المملكة، والتوصيل مجاني للطلبات فوق <span class="js-free-threshold">50</span> د.أ.</p>
           </div>
         </div>
 
         <div class="standard-card">
           <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </div>
@@ -471,15 +464,15 @@
 
         <div class="standard-card">
           <div class="standard-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <polyline points="23 4 23 10 17 10"></polyline>
-              <polyline points="1 20 1 14 7 14"></polyline>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+              <circle cx="12" cy="12" r="2.5"></circle>
+              <path d="M6 12h.01M18 12h.01"></path>
             </svg>
           </div>
           <div class="standard-content">
-            <h3 class="standard-title">الدفع عند الاستلام واستبدال فوري</h3>
-            <p class="standard-desc">ادفع نقداً بعد المعاينة والرضا التام، مع خدمة استبدال مرنة وسريعة تضمن لك أسهل تجربة تسوق إلكتروني.</p>
+            <h3 class="standard-title">الدفع عند الاستلام</h3>
+            <p class="standard-desc">الدفع نقداً بعد المعاينة، مع خدمة استبدال سهلة وسريعة عند الحاجة.</p>
           </div>
         </div>
       </div>
@@ -531,14 +524,15 @@
       </div>
 
       <!-- Category Filter Tabs -->
-      <div class="catalog-tabs">
-        <button class="tab-btn active" data-cat="all" onclick="filterCategory('all')">All Collection</button>
-        <button class="tab-btn" data-cat="tote" onclick="filterCategory('tote')">Tote Bags</button>
-        <button class="tab-btn" data-cat="shoulder" onclick="filterCategory('shoulder')">Shoulder Bags</button>
-        <button class="tab-btn" data-cat="crossbody" onclick="filterCategory('crossbody')">Crossbody Bags</button>
-        <button class="tab-btn" data-cat="clutch" onclick="filterCategory('clutch')">Clutches</button>
-        <button class="tab-btn" data-cat="accessories" onclick="filterCategory('accessories')">Accessories</button>
-        <button class="tab-btn" data-cat="best seller" onclick="filterCategory('best seller')">Best Sellers</button>
+      <div class="catalog-tabs" dir="rtl">
+        <button class="tab-btn active" data-cat="all" onclick="filterCategory('all')">كل التشكيلة</button>
+        <button class="tab-btn" data-cat="top handle" onclick="filterCategory('top handle')">حقائب بمقبض</button>
+        <button class="tab-btn" data-cat="tote" onclick="filterCategory('tote')">حقائب توت</button>
+        <button class="tab-btn" data-cat="shoulder" onclick="filterCategory('shoulder')">حقائب كتف</button>
+        <button class="tab-btn" data-cat="crossbody" onclick="filterCategory('crossbody')">كروس بودي</button>
+        <button class="tab-btn" data-cat="clutch" onclick="filterCategory('clutch')">كلاتش</button>
+        <button class="tab-btn" data-cat="accessories" onclick="filterCategory('accessories')">إكسسوارات</button>
+        <button class="tab-btn" data-cat="best seller" onclick="filterCategory('best seller')">الأكثر مبيعاً</button>
       </div>
 
       <!-- Products Grid -->
@@ -552,9 +546,9 @@
   <section class="reviews-section" id="reviews">
     <div class="container">
       <div class="section-header text-center" style="margin-bottom: 36px;">
-        <span class="section-tag-gold">آراء العملاء • VERIFIED CLIENTS</span>
+        <span class="section-tag-gold">آراء العملاء • CLIENT REVIEWS</span>
         <h2 class="section-title font-serif">ماذا يقول عملاؤنا عن OMAR LUXURY</h2>
-        <p class="section-subtitle">فخورون بثقة وتجارب آلاف العملاء في الأردن</p>
+        <p class="section-subtitle">شاركنا تجربتك بعد استلام طلبك، فرأيك يهمّنا.</p>
         <div class="section-divider-ornate">
           <span class="ornate-line"></span>
           <span class="ornate-icon">◆</span>
@@ -568,60 +562,56 @@
 
       <div style="text-align: center;">
         <button class="btn-luxury" style="background: transparent; color: var(--color-dark); border: 1.5px solid var(--color-dark);" onclick="document.getElementById('write-review-modal').classList.add('open')">
-          Write A Review
+          اكتب تقييمك
         </button>
       </div>
     </div>
   </section>
 
   <!-- Luxury Footer -->
-  <footer class="luxury-footer">
+  <footer class="luxury-footer" dir="rtl">
     <div class="container">
       <div class="footer-grid">
         <div>
           <span class="footer-logo font-serif">OMAR LUXURY</span>
           <p class="footer-desc">
-            Crafting timeless leather pieces for modern elegance. Every stitch is carefully placed by heritage artisans using ethically sourced full-grain leather.
+            حقائب وإكسسوارات فاخرة مختارة بعناية، مع توصيل لكل محافظات المملكة والدفع عند الاستلام بعد المعاينة.
           </p>
-          <div style="display:flex; gap:16px;">
-            <a href="https://instagram.com" target="_blank" style="color:#d1cbc2; font-size:18px;">Instagram</a>
-            <a href="https://whatsapp.com" target="_blank" style="color:#d1cbc2; font-size:18px;">WhatsApp</a>
-          </div>
         </div>
         <div>
-          <h4 class="footer-heading">Collections</h4>
+          <h4 class="footer-heading">التشكيلة</h4>
           <ul class="footer-links">
-            <li><a href="javascript:void(0)" onclick="filterCategory('tote')">Tote Bags</a></li>
-            <li><a href="javascript:void(0)" onclick="filterCategory('shoulder')">Shoulder Bags</a></li>
-            <li><a href="javascript:void(0)" onclick="filterCategory('crossbody')">Crossbody Bags</a></li>
-            <li><a href="javascript:void(0)" onclick="filterCategory('clutch')">Evening Clutches</a></li>
-            <li><a href="javascript:void(0)" onclick="filterCategory('accessories')">Leather Accessories</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('top handle')">حقائب بمقبض</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('tote')">حقائب توت</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('shoulder')">حقائب كتف</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('crossbody')">كروس بودي</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('clutch')">كلاتش ومناسبات</a></li>
+            <li><a href="javascript:void(0)" onclick="shopBy('accessories')">إكسسوارات</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-heading">Client Services</h4>
+          <h4 class="footer-heading">خدمة العملاء</h4>
           <ul class="footer-links">
-            <li><a href="#announcement-text">Shipping & Returns</a></li>
-            <li><a href="#reviews">Client Reviews</a></li>
-            <li><a href="javascript:void(0)" onclick="openCartDrawer()">Shopping Bag</a></li>
+            <li><span>التوصيل خلال 3–7 أيام</span></li>
+            <li><span>المعاينة قبل الدفع</span></li>
+            <li><a href="#reviews">آراء العملاء</a></li>
+            <li><a href="javascript:void(0)" onclick="openCartDrawer()">حقيبة التسوق</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-heading">Omar Luxury Newsletter</h4>
-          <p style="color:#8f8a82; font-size:12.5px; margin-bottom:14px;">
-            Subscribe to receive exclusive access to private sales and upcoming seasonal releases.
-          </p>
-          <form onsubmit="event.preventDefault(); showToast('Thank you for subscribing to Omar Luxury Privé!'); this.reset();" style="display:flex; gap:8px;">
-            <input type="email" required placeholder="Enter your email" style="background:#1f1c19; border:1px solid #332f2b; color:#fff; padding:10px 14px; font-size:12px; border-radius:4px; flex-grow:1; outline:none;">
-            <button type="submit" style="background:#fff; color:#121212; padding:10px 16px; font-size:12px; font-weight:600; border-radius:4px;">Join</button>
-          </form>
+          <h4 class="footer-heading">تواصل معنا</h4>
+          <ul class="footer-links">
+            <li class="js-contact-whatsapp"><a href="#" target="_blank" rel="noopener">واتساب</a></li>
+            <li class="js-contact-instagram"><a href="#" target="_blank" rel="noopener">إنستغرام</a></li>
+            <li class="js-contact-email"><a href="#">البريد الإلكتروني</a></li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 OMAR LUXURY. All Rights Reserved. Engineered for timeless sophistication.</div>
+        <div>© 2026 OMAR LUXURY. جميع الحقوق محفوظة.</div>
         <div style="display:flex; gap:18px;">
-          <span>Cash on Delivery & WhatsApp Checkout</span>
+          <span>الدفع عند الاستلام • الطلب عبر واتساب</span>
         </div>
       </div>
     </div>
@@ -629,16 +619,16 @@
 
   <!-- Slide-over Cart Drawer -->
   <div class="cart-drawer-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
-  <aside class="cart-drawer" id="cart-drawer">
+  <aside class="cart-drawer" id="cart-drawer" dir="rtl">
     <div class="cart-header">
-      <h3 class="cart-title font-serif">Your Shopping Bag (<span class="cart-count">0</span>)</h3>
-      <button class="close-btn" onclick="closeCartDrawer()">✕</button>
+      <h3 class="cart-title font-serif">حقيبة التسوق (<span class="cart-count">0</span>)</h3>
+      <button class="close-btn" onclick="closeCartDrawer()" aria-label="إغلاق">✕</button>
     </div>
 
     <!-- Free shipping tracker -->
     <div style="padding: 12px 24px; background: #faf8f5; border-bottom: 1px solid var(--color-border); font-size: 12px;">
       <div id="free-shipping-msg" style="margin-bottom: 6px; color: var(--color-text-muted);">
-        Add $100 more to unlock Free Shipping!
+        الشحن مجاني للطلبات المؤهلة
       </div>
       <div style="height: 4px; background: #e5e0d8; border-radius: 2px; overflow: hidden;">
         <div id="free-shipping-progress" style="width: 0%; height: 100%; background: var(--color-dark); transition: width 0.3s ease;"></div>
@@ -651,25 +641,26 @@
 
     <div class="cart-footer">
       <div class="cart-summary-row">
-        <span>Subtotal</span>
-        <span id="cart-subtotal">$0.00</span>
+        <span>المجموع الفرعي</span>
+        <span id="cart-subtotal">0 د.أ</span>
       </div>
       <div class="cart-summary-row" id="coupon-row" style="color: #2e7d32; display: none;">
-        <span>Promo Discount</span>
-        <span id="cart-discount">-$0.00</span>
+        <span>خصم الكوبون</span>
+        <span id="cart-discount">0 د.أ</span>
       </div>
       <div class="cart-summary-row">
-        <span>Estimated Shipping</span>
-        <span id="cart-shipping">$15.00</span>
+        <span>التوصيل</span>
+        <span id="cart-shipping">0 د.أ</span>
       </div>
       <div class="cart-summary-row total">
-        <span>Total</span>
-        <span id="cart-total">$0.00</span>
+        <span>الإجمالي</span>
+        <span id="cart-total">0 د.أ</span>
       </div>
 
       <button class="btn-luxury" style="width:100%; margin-top:16px; padding:15px;" onclick="openCheckoutModal()">
-        Proceed to Checkout
+        إتمام الطلب
       </button>
+      <p class="cart-delivery-note">التوصيل خلال 3–7 أيام • الدفع عند الاستلام بعد المعاينة</p>
     </div>
   </aside>
 
@@ -685,52 +676,52 @@
 
   <!-- Express Checkout Modal -->
   <div class="modal-overlay" id="checkout-modal" onclick="if(event.target===this) closeModal('checkout-modal')">
-    <div class="modal-box">
-      <button class="close-btn" style="position:absolute; top:18px; right:18px;" onclick="closeModal('checkout-modal')">✕</button>
-      <h2 class="font-serif" style="font-size: 26px; margin-bottom: 6px;">Express Checkout</h2>
-      <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:20px;">Complete your delivery details to receive your order.</p>
+    <div class="modal-box" dir="rtl">
+      <button class="close-btn" style="position:absolute; top:18px; left:18px;" onclick="closeModal('checkout-modal')" aria-label="إغلاق">✕</button>
+      <h2 class="font-serif" style="font-size: 26px; margin-bottom: 6px;">إتمام الطلب</h2>
+      <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:20px;">أدخل بيانات التوصيل لإتمام طلبك. التوصيل خلال 3–7 أيام، والدفع عند الاستلام.</p>
 
       <form onsubmit="submitCheckout(event)">
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Full Name *</label>
-            <input type="text" id="order-name" required placeholder="e.g. Sarah Mansour" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">الاسم الكامل *</label>
+            <input type="text" id="order-name" required placeholder="مثال: سارة أحمد" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
           </div>
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Phone / WhatsApp Number *</label>
-            <input type="tel" id="order-phone" required placeholder="e.g. +972 59 123 4567" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">رقم الهاتف / واتساب *</label>
+            <input type="tel" id="order-phone" required placeholder="07X XXX XXXX" dir="ltr" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px; text-align:right;">
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
             <div>
-              <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">City *</label>
-              <input type="text" id="order-city" required placeholder="e.g. Ramallah / Jerusalem" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+              <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">المدينة *</label>
+              <input type="text" id="order-city" required placeholder="مثال: عمّان" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
             </div>
             <div>
-              <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Address Details *</label>
-              <input type="text" id="order-address" required placeholder="Street, Building, Apt" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+              <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">العنوان بالتفصيل *</label>
+              <input type="text" id="order-address" required placeholder="المنطقة، الشارع، رقم البناية" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
             </div>
           </div>
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Special Delivery Notes (Optional)</label>
-            <textarea id="order-notes" rows="2" placeholder="e.g. Gift packaging / Preferred delivery time" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;"></textarea>
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">ملاحظات التوصيل (اختياري)</label>
+            <textarea id="order-notes" rows="2" placeholder="مثال: تغليف هدية أو وقت مفضّل للتوصيل" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;"></textarea>
           </div>
-          
+
           <div style="border-top:1px solid var(--color-border); padding-top:14px; margin-top:4px;">
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:8px;">Payment Method</label>
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:8px;">طريقة الدفع</label>
             <div style="display:flex; flex-direction:column; gap:8px;">
               <label style="display:flex; align-items:center; gap:10px; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px; cursor:pointer;">
                 <input type="radio" name="payment_method" value="Cash on Delivery" checked>
-                <span>💵 <strong>Cash on Delivery</strong> (Pay when bag arrives)</span>
+                <span>💵 <strong>الدفع عند الاستلام</strong> — ادفع نقداً بعد معاينة الطلب</span>
               </label>
               <label style="display:flex; align-items:center; gap:10px; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px; cursor:pointer;">
                 <input type="radio" name="payment_method" value="WhatsApp Order">
-                <span>💬 <strong>Direct WhatsApp Order</strong> (Instant confirmation & agent support)</span>
+                <span>💬 <strong>الطلب عبر واتساب</strong> — تأكيد مباشر مع خدمة العملاء</span>
               </label>
             </div>
           </div>
 
           <button type="submit" class="btn-luxury" id="place-order-btn" style="width:100%; margin-top:10px; padding:14px;">
-            Complete Order
+            تأكيد الطلب
           </button>
         </div>
       </form>
@@ -748,35 +739,35 @@
 
   <!-- Write A Review Modal -->
   <div class="modal-overlay" id="write-review-modal" onclick="if(event.target===this) closeModal('write-review-modal')">
-    <div class="modal-box">
-      <button class="close-btn" style="position:absolute; top:18px; right:18px;" onclick="closeModal('write-review-modal')">✕</button>
-      <h2 class="font-serif" style="font-size: 24px; margin-bottom: 6px;">Share Your Experience</h2>
-      <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:20px;">We value your opinion on our craftsmanship and quality.</p>
-      
+    <div class="modal-box" dir="rtl">
+      <button class="close-btn" style="position:absolute; top:18px; left:18px;" onclick="closeModal('write-review-modal')" aria-label="إغلاق">✕</button>
+      <h2 class="font-serif" style="font-size: 24px; margin-bottom: 6px;">شاركنا تجربتك</h2>
+      <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:20px;">رأيك يهمّنا ويساعد غيرك على الاختيار.</p>
+
       <form onsubmit="submitReview(event)">
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Your Name *</label>
-            <input type="text" id="rev-author" required placeholder="e.g. Layla H." style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">الاسم *</label>
+            <input type="text" id="rev-author" required placeholder="مثال: ليلى" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
           </div>
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Product Purchased</label>
-            <input type="text" id="rev-product" placeholder="e.g. Classic Tote Bag" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">المنتج الذي اشتريته</label>
+            <input type="text" id="rev-product" placeholder="اسم الحقيبة أو القطعة" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
           </div>
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Rating (Stars)</label>
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">التقييم</label>
             <select id="rev-rating" style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;">
-              <option value="5">★★★★★ (5 Stars - Exceptional)</option>
-              <option value="4">★★★★☆ (4 Stars - Great)</option>
-              <option value="3">★★★☆☆ (3 Stars - Average)</option>
+              <option value="5">★★★★★ ممتاز</option>
+              <option value="4">★★★★☆ جيد جداً</option>
+              <option value="3">★★★☆☆ متوسط</option>
             </select>
           </div>
           <div>
-            <label style="font-size:12px; font-weight:600; text-transform:uppercase; display:block; margin-bottom:4px;">Your Review *</label>
-            <textarea id="rev-comment" required rows="3" placeholder="Tell us about the texture, leather quality, and design..." style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;"></textarea>
+            <label style="font-size:12.5px; font-weight:600; display:block; margin-bottom:4px;">تقييمك *</label>
+            <textarea id="rev-comment" required rows="3" placeholder="حدّثنا عن الجودة والخامة والتصميم..." style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:4px; font-size:13px;"></textarea>
           </div>
           <button type="submit" class="btn-luxury" style="width:100%; padding:13px;">
-            Submit Review
+            إرسال التقييم
           </button>
         </div>
       </form>
